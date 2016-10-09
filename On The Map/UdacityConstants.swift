@@ -6,16 +6,7 @@
 //  Copyright © 2016 Phillip Crawford. All rights reserved.
 //
 
-import Foundation
-//
-//  TMDBConstants.swift
-//  TheMovieManager
-//
-//  Created by Jarrod Parkes on 2/11/15.
-//  Copyright (c) 2015 Jarrod Parkes. All rights reserved.
-//
-
-// MARK: - TMDBClient (Constants)
+import UIKit
 
 extension UdacityClient {
     
@@ -111,4 +102,13 @@ extension UdacityClient {
         static let RowPoster = UdacityClient.sharedInstance().config.posterSizes[2]
         static let DetailPoster = UdacityClient.sharedInstance().config.posterSizes[4]
     }
+    
+    // MARK: UI
+    struct UI {
+        static let LoginColorTop = UIColor(red: 0.345, green: 0.839, blue: 0.988, alpha: 1.0).CGColor
+        static let LoginColorBottom = UIColor(red: 0.023, green: 0.569, blue: 0.910, alpha: 1.0).CGColor
+        static let GreyColor = UIColor(red: 0.702, green: 0.863, blue: 0.929, alpha:1.0)
+        static let BlueColor = UIColor(red: 0.0, green:0.502, blue:0.839, alpha: 1.0)
+    }
+    
 }

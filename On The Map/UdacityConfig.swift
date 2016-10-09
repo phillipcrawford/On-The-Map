@@ -15,7 +15,7 @@ private let _fileURL: NSURL = _documentsDirectoryURL.URLByAppendingPathComponent
 
 // MARK: - TMDBConfig: NSObject, NSCoding
 
-class TMDBConfig: NSObject, NSCoding {
+class UdacityConfig: NSObject, NSCoding {
     
     // MARK: Properties
     
@@ -43,11 +43,11 @@ class TMDBConfig: NSObject, NSCoding {
         
         self.init()
         
-        if let imageDictionary = dictionary[TMDBClient.JSONResponseKeys.ConfigImages] as? [String:AnyObject],
-            let urlString = imageDictionary[TMDBClient.JSONResponseKeys.ConfigBaseImageURL] as? String,
-            let secureURLString = imageDictionary[TMDBClient.JSONResponseKeys.ConfigSecureBaseImageURL] as? String,
-            let posterSizesArray = imageDictionary[TMDBClient.JSONResponseKeys.ConfigPosterSizes] as? [String],
-            let profileSizesArray = imageDictionary[TMDBClient.JSONResponseKeys.ConfigProfileSizes] as? [String] {
+        if let imageDictionary = dictionary[UdacityClient.JSONResponseKeys.ConfigImages] as? [String:AnyObject],
+            let urlString = imageDictionary[UdacityClient.JSONResponseKeys.ConfigBaseImageURL] as? String,
+            let secureURLString = imageDictionary[UdacityClient.JSONResponseKeys.ConfigSecureBaseImageURL] as? String,
+            let posterSizesArray = imageDictionary[UdacityClient.JSONResponseKeys.ConfigPosterSizes] as? [String],
+            let profileSizesArray = imageDictionary[UdacityClient.JSONResponseKeys.ConfigProfileSizes] as? [String] {
             baseImageURLString = urlString
             secureBaseImageURLString = secureURLString
             posterSizes = posterSizesArray
@@ -72,7 +72,7 @@ class TMDBConfig: NSObject, NSCoding {
     
     private func updateConfiguration() {
         
-        TMDBClient.sharedInstance().getConfig() { (didSucceed, error) in
+        UdacityClient.sharedInstance().getConfig() { (didSucceed, error) in
             if let error = error {
                 print("Error updating config: \(error.localizedDescription)")
             } else {
@@ -110,9 +110,9 @@ class TMDBConfig: NSObject, NSCoding {
         NSKeyedArchiver.archiveRootObject(self, toFile: _fileURL.path!)
     }
     
-    class func unarchivedInstance() -> TMDBConfig? {
+    class func unarchivedInstance() -> UdacityConfig? {
         if NSFileManager.defaultManager().fileExistsAtPath(_fileURL.path!) {
-            return NSKeyedUnarchiver.unarchiveObjectWithFile(_fileURL.path!) as? TMDBConfig
+            return NSKeyedUnarchiver.unarchiveObjectWithFile(_fileURL.path!) as? UdacityConfig
         } else {
             return nil
         }

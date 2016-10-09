@@ -18,7 +18,7 @@ class UdacityClient : NSObject {
     var session = NSURLSession.sharedSession()
     
     // configuration object
-    var config = TMDBConfig()
+    var config = UdacityConfig()
     
     // authentication state
     var requestToken: String? = nil
@@ -209,9 +209,9 @@ class UdacityClient : NSObject {
     private func tmdbURLFromParameters(parameters: [String:AnyObject], withPathExtension: String? = nil) -> NSURL {
         
         let components = NSURLComponents()
-        components.scheme = TMDBClient.Constants.ApiScheme
-        components.host = TMDBClient.Constants.ApiHost
-        components.path = TMDBClient.Constants.ApiPath + (withPathExtension ?? "")
+        components.scheme = UdacityClient.Constants.ApiScheme
+        components.host = UdacityClient.Constants.ApiHost
+        components.path = UdacityClient.Constants.ApiPath + (withPathExtension ?? "")
         components.queryItems = [NSURLQueryItem]()
         
         for (key, value) in parameters {
@@ -224,9 +224,9 @@ class UdacityClient : NSObject {
     
     // MARK: Shared Instance
     
-    class func sharedInstance() -> TMDBClient {
+    class func sharedInstance() -> UdacityClient {
         struct Singleton {
-            static var sharedInstance = TMDBClient()
+            static var sharedInstance = UdacityClient()
         }
         return Singleton.sharedInstance
     }
