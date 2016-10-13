@@ -1,44 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="bOT-wO-yYd">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Web Auth-->
-        <scene sceneID="R1k-2y-Nzl">
-            <objects>
-                <viewController storyboardIdentifier="TMDBAuthViewController" id="4Kl-7P-jRZ" userLabel="Web Auth" customClass="UdacityAuthViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="d1o-th-QOk"/>
-                        <viewControllerLayoutGuide type="bottom" id="o0o-pb-HRL"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="oRY-oa-Y2d">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HQF-k0-azw">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="HQF-k0-azw" secondAttribute="trailing" id="2F2-I6-weh"/>
-                            <constraint firstItem="HQF-k0-azw" firstAttribute="top" secondItem="oRY-oa-Y2d" secondAttribute="top" id="iMe-ER-W6a"/>
-                            <constraint firstItem="HQF-k0-azw" firstAttribute="bottom" secondItem="o0o-pb-HRL" secondAttribute="top" id="kGb-CU-Xb9"/>
-                            <constraint firstItem="HQF-k0-azw" firstAttribute="leading" secondItem="oRY-oa-Y2d" secondAttribute="leading" id="lTO-k8-BRw"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="webView" destination="HQF-k0-azw" id="rSP-5O-YBJ"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1aI-L1-VAd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="251" y="1221"/>
-        </scene>
         <!--Login-->
         <scene sceneID="axt-O0-RJB">
             <objects>

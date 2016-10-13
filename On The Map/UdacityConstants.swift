@@ -17,9 +17,9 @@ extension UdacityClient {
         static let ApiKey : String = "a55aeb535cdb7bfcf9394f2c712ff8c0"
         
         // MARK: URLs
-        static let ApiScheme = "https"
-        static let ApiHost = "api.themoviedb.org"
-        static let ApiPath = "/3"
+        static let ApiScheme = "https"               /////////////
+        static let ApiHost = "www.udacity.com"       /////////////
+        static let ApiPath = "/api"                  /////////////
         static let AuthorizationURL : String = "https://www.themoviedb.org/authenticate/"
     }
     
@@ -35,7 +35,7 @@ extension UdacityClient {
         
         // MARK: Authentication
         static let AuthenticationTokenNew = "/authentication/token/new"
-        static let AuthenticationSessionNew = "/authentication/session/new"
+        static let AuthenticationSessionNew = "/session"             ///////////
         
         // MARK: Search
         static let SearchMovie = "/search/movie"
@@ -52,8 +52,11 @@ extension UdacityClient {
     
     // MARK: Parameter Keys
     struct ParameterKeys {
+        static let Username = "Username"            //////////////
+        static let Password = "Password"            //////////////
         static let ApiKey = "api_key"
         static let SessionID = "session_id"
+
         static let RequestToken = "request_token"
         static let Query = "query"
     }
@@ -75,10 +78,10 @@ extension UdacityClient {
         
         // MARK: Authorization
         static let RequestToken = "request_token"
-        static let SessionID = "session_id"
-        
-        // MARK: Account
-        static let UserID = "id"
+        static let SessionID = "session"            //////////////
+        static let UserID = "id"                    //////////////
+        static let Account = "account"              //////////////
+        static let Key = "key"                      //////////////
         
         // MARK: Config
         static let ConfigBaseImageURL = "base_url"

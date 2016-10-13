@@ -47,12 +47,12 @@ class LoginViewController: UIViewController {
     @IBAction func loginPressed(sender: AnyObject) {
         
         userDidTapView(self)
-        
+        let methodParameters: [String: String!] = [UdacityClient.ParameterKeys.Username: usernameTextField.text, UdacityClient.ParameterKeys.Password: passwordTextField.text]
         if usernameTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
             debugTextLabel.text = "Username or Password Empty."
         } else {
             setUIEnabled(false)
-            UdacityClient.sharedInstance().authenticateWithViewController(self) {(success, errorString) in
+            UdacityClient.sharedInstance().authenticateWithViewController(self, parameters: methodParameters) {(success, errorString) in
                 performUIUpdatesOnMain {
                     if success {
                         self.completeLogin()

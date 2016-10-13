@@ -40,7 +40,7 @@ class UdacityClient : NSObject {
         parametersWithApiKey[ParameterKeys.ApiKey] = Constants.ApiKey
         
         /* 2/3. Build the URL, Configure the request */
-        let request = NSMutableURLRequest(URL: tmdbURLFromParameters(parametersWithApiKey, withPathExtension: method))
+        let request = NSMutableURLRequest(URL: tmdbURLFromParameters(method))
         
         /* 4. Make the request */
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
@@ -81,14 +81,15 @@ class UdacityClient : NSObject {
     
     // MARK: POST
     
-    func taskForPOSTMethod(method: String, parameters: [String:AnyObject], jsonBody: String, completionHandlerForPOST: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    func taskForPOSTMethod(method: String, parameters: [String:String!], jsonBody: String, completionHandlerForPOST: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
         /* 1. Set the parameters */
-        var parametersWithApiKey = parameters
-        parametersWithApiKey[ParameterKeys.ApiKey] = Constants.ApiKey
+        //        var parametersWithApiKey = parameters
+        //        parametersWithApiKey[ParameterKeys.ApiKey] = Constants.ApiKey
         
         /* 2/3. Build the URL, Configure the request */
-        let request = NSMutableURLRequest(URL: tmdbURLFromParameters(parametersWithApiKey, withPathExtension: method))
+        let request = NSMutableURLRequest(URL: tmdbURLFromParameters(method))
+        print(request)
         request.HTTPMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -110,6 +111,9 @@ class UdacityClient : NSObject {
             }
             
             /* GUARD: Did we get a successful 2XX response? */
+            let sstatusCode = (response as? NSHTTPURLResponse)?.statusCode
+            print(sstatusCode)
+            print(data)
             guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
                 sendError("Your request returned a status code other than 2xx!")
                 return
@@ -122,7 +126,8 @@ class UdacityClient : NSObject {
             }
             
             /* 5/6. Parse the data and use the data (happens in completion handler) */
-            self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForPOST)
+            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
+            self.convertDataWithCompletionHandler(newData, completionHandlerForConvertData: completionHandlerForPOST)
         }
         
         /* 7. Start the request */
@@ -206,18 +211,12 @@ class UdacityClient : NSObject {
     }
     
     // create a URL from parameters
-    private func tmdbURLFromParameters(parameters: [String:AnyObject], withPathExtension: String? = nil) -> NSURL {
+    private func tmdbURLFromParameters(withPathExtension: String? = nil) -> NSURL {
         
         let components = NSURLComponents()
         components.scheme = UdacityClient.Constants.ApiScheme
         components.host = UdacityClient.Constants.ApiHost
         components.path = UdacityClient.Constants.ApiPath + (withPathExtension ?? "")
-        components.queryItems = [NSURLQueryItem]()
-        
-        for (key, value) in parameters {
-            let queryItem = NSURLQueryItem(name: key, value: "\(value)")
-            components.queryItems!.append(queryItem)
-        }
         
         return components.URL!
     }
