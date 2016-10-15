@@ -55,8 +55,10 @@ class LoginViewController: UIViewController {
             UdacityClient.sharedInstance().authenticateWithViewController(self, parameters: methodParameters) {(success, errorString) in
                 performUIUpdatesOnMain {
                     if success {
+                        print("hello")
                         self.completeLogin()
                     } else {
+                        print("ruoh")
                         self.displayError(errorString)
                     }
                 }
@@ -68,6 +70,7 @@ class LoginViewController: UIViewController {
         performUIUpdatesOnMain {
             self.debugTextLabel.text = ""
             self.setUIEnabled(true)
+            print("heello")
             let controller = self.storyboard!.instantiateViewControllerWithIdentifier("ManagerNavigationController") as! UINavigationController
             self.presentViewController(controller, animated: true, completion: nil)
         }

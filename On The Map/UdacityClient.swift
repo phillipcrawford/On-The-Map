@@ -23,7 +23,7 @@ class UdacityClient : NSObject {
     // authentication state
     var requestToken: String? = nil
     var sessionID : String? = nil
-    var userID : Int? = nil
+    var userID : String? = nil
     
     // MARK: Initializers
     
@@ -89,7 +89,6 @@ class UdacityClient : NSObject {
         
         /* 2/3. Build the URL, Configure the request */
         let request = NSMutableURLRequest(URL: tmdbURLFromParameters(method))
-        print(request)
         request.HTTPMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -111,9 +110,6 @@ class UdacityClient : NSObject {
             }
             
             /* GUARD: Did we get a successful 2XX response? */
-            let sstatusCode = (response as? NSHTTPURLResponse)?.statusCode
-            print(sstatusCode)
-            print(data)
             guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
                 sendError("Your request returned a status code other than 2xx!")
                 return

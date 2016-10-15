@@ -29,22 +29,18 @@ extension UdacityClient {
         getSessionID(parameters) { (success, sessionID, userID, errorString) in
                             
             if success {
-                                
                 // success! we have the sessionID!
-                self.sessionID = sessionID
-                print(sessionID)
-                self.userID = userID
-                print(userID)
-            } else {
+                self.sessionID = sessionID!
+                self.userID = userID!
                 completionHandlerForAuth(success: success, errorString: errorString)
             }
         }
     }
     
-    private func getSessionID(parameters: [String: String!], completionHandlerForSession: (success: Bool, sessionID: String?, userID: Int?, errorString: String?) -> Void) {
+    private func getSessionID(parameters: [String: String!], completionHandlerForSession: (success: Bool, sessionID: String?, userID: String?, errorString: String?) -> Void) {
         
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
-        let jsonBody = "{\"udacity\": {\"username\": \"\(parameters[UdacityClient.ParameterKeys.Username])\", \"password\": \"\(parameters[UdacityClient.ParameterKeys.Password])\"}}"
+        let jsonBody = "{\"udacity\": {\"username\": \"\(parameters[UdacityClient.ParameterKeys.Username]!)\", \"password\": \"\(parameters[UdacityClient.ParameterKeys.Password]!)\"}}"
         /* 2. Make the request */
         taskForPOSTMethod(Methods.AuthenticationSessionNew, parameters: parameters, jsonBody: jsonBody) { (results, error) in
             
@@ -53,7 +49,7 @@ extension UdacityClient {
                 print(error)
                 completionHandlerForSession(success: false, sessionID: nil, userID: nil, errorString: "Login Failed (Session ID).")
             } else {
-                if let sessionID = results[UdacityClient.JSONResponseKeys.SessionID]!![UdacityClient.JSONResponseKeys.UserID] as? String, userID = results[UdacityClient.JSONResponseKeys.UserID]!![UdacityClient.JSONResponseKeys.UserID] as? Int {
+                if let sessionID = results[UdacityClient.JSONResponseKeys.SessionID]!![UdacityClient.JSONResponseKeys.UserID]!! as? String, userID = results[UdacityClient.JSONResponseKeys.Account]!![UdacityClient.JSONResponseKeys.Key]!! as? String {
                     completionHandlerForSession(success: true, sessionID: sessionID, userID: userID, errorString: nil)
                 } else {
                     print("Could not find \(UdacityClient.JSONResponseKeys.SessionID) in \(results)")
