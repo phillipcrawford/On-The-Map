@@ -2,13 +2,13 @@
 //  UdacityConstants.swift
 //  On The Map
 //
-//  Created by Phillip Crawford on 10/7/16.
+//  Created by Phillip Crawford on 10/17/16.
 //  Copyright © 2016 Phillip Crawford. All rights reserved.
 //
 
 import UIKit
 
-extension UdacityClient {
+extension ParseClient {
     
     // MARK: Constants
     struct Constants {
@@ -57,7 +57,7 @@ extension UdacityClient {
         static let Password = "Password"            //////////////
         static let ApiKey = "api_key"
         static let SessionID = "session_id"
-
+        
         static let RequestToken = "request_token"
         static let Query = "query"
     }
@@ -83,10 +83,16 @@ extension UdacityClient {
         static let Account = "account"              //////////////
         static let Key = "key"                      //////////////
         
-        // MARK: Get User Data
-        static let User = "user"                    //////////////
-        static let FirstName = "first_name"         //////////////
-        static let LastName = "last_name"           //////////////
+        // MARK: StudentLocation Keys
+        
+        static let FirstName = "firstName"
+        static let LastName = "lastName"
+        static let Latitude = "latitude"
+        static let Longitude = "longitude"
+        static let MapString = "mapString"
+        static let MediaURL = "mediaURL"
+        static let ObjectID = "objectID"
+        static let UniqueKey = "uniqueKey"
     }
     
     // MARK: UI

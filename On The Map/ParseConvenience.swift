@@ -2,7 +2,7 @@
 //  UdacityConvenience.swift
 //  TheMovieManager
 //
-//  Created by Phillip Crawford on 10/7/16.
+//  Created by Phillip Crawford on 10/17/16.
 //  Copyright © 2016 Phillip Crawford. All rights reserved.
 //
 
@@ -11,7 +11,7 @@ import Foundation
 
 // MARK: - TMDBClient (Convenient Resource Methods)
 
-extension UdacityClient {
+extension ParseClient {
     
     // MARK: Authentication (GET) Methods
     /*
@@ -27,7 +27,7 @@ extension UdacityClient {
         
         // chain completion handlers for each request so that they run one after the other
         getSessionID(parameters) { (success, sessionID, userID, errorString) in
-                            
+            
             if success {
                 // success! we have the sessionID!
                 self.sessionID = sessionID!
@@ -64,7 +64,7 @@ extension UdacityClient {
                 print(results["user"]!!["last_name"]!!)
                 
             }
-        
+            
         }
     }
     

@@ -2,7 +2,7 @@
 //  UdacityClient.swift
 //  On The Map
 //
-//  Created by Phillip Crawford on 10/7/16.
+//  Created by Phillip Crawford on 10/17/16.
 //  Copyright © 2016 Phillip Crawford. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - TMDBClient: NSObject
 
-class UdacityClient : NSObject {
+class ParseClient : NSObject {
     
     // MARK: Properties
     
@@ -156,9 +156,9 @@ class UdacityClient : NSObject {
     private func tmdbURLFromParameters(withPathExtension: String? = nil) -> NSURL {
         
         let components = NSURLComponents()
-        components.scheme = UdacityClient.Constants.ApiScheme
-        components.host = UdacityClient.Constants.ApiHost
-        components.path = UdacityClient.Constants.ApiPath + (withPathExtension ?? "")
+        components.scheme = ParseClient.Constants.ApiScheme
+        components.host = ParseClient.Constants.ApiHost
+        components.path = ParseClient.Constants.ApiPath + (withPathExtension ?? "")
         
         return components.URL!
     }
