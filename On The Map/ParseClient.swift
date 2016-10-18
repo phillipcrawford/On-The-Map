@@ -1,5 +1,5 @@
 //
-//  UdacityClient.swift
+//  ParseClient.swift
 //  On The Map
 //
 //  Created by Phillip Crawford on 10/17/16.
@@ -32,10 +32,11 @@ class ParseClient : NSObject {
     
     func taskForGETMethod(method: String, completionHandlerForGET: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
-        /* 1. Set the parameters */
-        let biggerMethod = "\(method)/\(userID!)"
+        
         /* 2/3. Build the URL, Configure the request */
-        let request = NSMutableURLRequest(URL: tmdbURLFromParameters(biggerMethod))
+        let request = NSMutableURLRequest(URL: tmdbURLFromParameters(method))
+        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
+        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
         /* 4. Make the request */
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
             
@@ -64,8 +65,7 @@ class ParseClient : NSObject {
             }
             
             /* 5/6. Parse the data and use the data (happens in completion handler) */
-            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
-            self.convertDataWithCompletionHandler(newData, completionHandlerForConvertData: completionHandlerForGET)
+            self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForGET)
         }
         
         /* 7. Start the request */
@@ -165,9 +165,9 @@ class ParseClient : NSObject {
     
     // MARK: Shared Instance
     
-    class func sharedInstance() -> UdacityClient {
+    class func sharedInstance() -> ParseClient {
         struct Singleton {
-            static var sharedInstance = UdacityClient()
+            static var sharedInstance = ParseClient()
         }
         return Singleton.sharedInstance
     }

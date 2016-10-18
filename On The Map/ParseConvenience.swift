@@ -1,5 +1,5 @@
 //
-//  UdacityConvenience.swift
+//  ParseConvenience.swift
 //  TheMovieManager
 //
 //  Created by Phillip Crawford on 10/17/16.
@@ -23,6 +23,15 @@ extension ParseClient {
      Step 3: Create a session ID
      Bonus Step: Go ahead and get the user id 😄!
      */
+    func recentStudentLocations(completionHandlerForRecentStudentLocations: (success: Bool, errorString: String?) -> Void) {
+        getStudentLocations { (success, errorString) in
+            if success {
+                completionHandlerForRecentStudentLocations(success: success, errorString: errorString)
+        
+            }
+        }
+    }
+    
     func authenticateWithViewController(hostViewController: UIViewController, parameters: [String: String!], completionHandlerForAuth: (success: Bool, errorString: String?) -> Void) {
         
         // chain completion handlers for each request so that they run one after the other
@@ -47,6 +56,30 @@ extension ParseClient {
         }
     }
     
+    private func getStudentLocations(completionHandlerForStudentLocations: (success: Bool, errorString: String?) -> Void) {
+        let method = ParseClient.Methods.StudentLocation
+        taskForGETMethod(method) { (results, error) in
+            if let error = error {
+                print(error)
+                completionHandlerForStudentLocations(success: false, errorString: "Failed (Get User Data).")
+            } else {
+                print(results)
+            }
+            
+//            } else {
+//                if let firstName = results[UdacityClient.JSONResponseKeys.User]!![UdacityClient.JSONResponseKeys.FirstName]!! as? String, lastName = results[UdacityClient.JSONResponseKeys.User]!![UdacityClient.JSONResponseKeys.LastName]!! as? String {
+//                    completionHandlerForStudentLocations(success: true, errorString: nil)
+//                } else {
+//                    print("Could not find \(UdacityClient.JSONResponseKeys.SessionID) in \(results)")
+//                    completionHandlerForStudentLocations(success: false, errorString: "Failed (Get User Data).")
+//                }
+//                print(results["user"]!!["first_name"]!!)
+//                print(results["user"]!!["last_name"]!!)
+//                
+//            }
+        }
+    }
+    
     private func getUserData(completionHandlerForUser: (success: Bool, firstName: String?, lastName: String?, errorString: String?) -> Void) {
         let method = "\(UdacityClient.Methods.User)" // user
         taskForGETMethod(method) { (results, error) in
@@ -64,7 +97,6 @@ extension ParseClient {
                 print(results["user"]!!["last_name"]!!)
                 
             }
-            
         }
     }
     

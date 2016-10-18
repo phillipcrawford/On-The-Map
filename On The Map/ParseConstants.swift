@@ -1,5 +1,5 @@
 //
-//  UdacityConstants.swift
+//  ParseConstants.swift
 //  On The Map
 //
 //  Created by Phillip Crawford on 10/17/16.
@@ -18,8 +18,8 @@ extension ParseClient {
         
         // MARK: URLs
         static let ApiScheme = "https"               /////////////
-        static let ApiHost = "www.udacity.com"       /////////////
-        static let ApiPath = "/api"                  /////////////
+        static let ApiHost = "parse.udacity.com"       /////////////
+        static let ApiPath = "/parse/classes"                  /////////////
         static let AuthorizationURL : String = "https://www.themoviedb.org/authenticate/"
     }
     
@@ -36,7 +36,7 @@ extension ParseClient {
         // MARK: Authentication
         static let AuthenticationTokenNew = "/authentication/token/new"
         static let AuthenticationSessionNew = "/session"             ///////////
-        static let User = "/users"                                   ///////////
+        static let StudentLocation = "/StudentLocation"              ///////////
         
         // MARK: Search
         static let SearchMovie = "/search/movie"

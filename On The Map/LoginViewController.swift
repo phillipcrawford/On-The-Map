@@ -82,6 +82,18 @@ class LoginViewController: UIViewController {
                 }
 
             })
+            
+            ParseClient.sharedInstance().recentStudentLocations({ (success, errorString) in
+                performUIUpdatesOnMain {
+                    if success {
+                        print("didhello")
+                    } else {
+                        print("didruoh")
+                        self.displayError(errorString)
+                    }
+                }
+                
+            })
             let controller = self.storyboard!.instantiateViewControllerWithIdentifier("ManagerNavigationController") as! UINavigationController
             self.presentViewController(controller, animated: true, completion: nil)
         }
