@@ -32,7 +32,6 @@ class ParseClient : NSObject {
     
     func taskForGETMethod(method: String, completionHandlerForGET: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
-        
         /* 2/3. Build the URL, Configure the request */
         let request = NSMutableURLRequest(URL: tmdbURLFromParameters(method))
         request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")

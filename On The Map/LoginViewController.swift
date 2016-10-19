@@ -14,7 +14,7 @@ class LoginViewController: UIViewController {
     
     // MARK: Properties
     var keyboardOnScreen = false
-    
+    var studentLocations: [StudentLocation] = [StudentLocation]()
     // MARK: Outlets
     
     @IBOutlet weak var usernameTextField: UITextField!
@@ -80,19 +80,6 @@ class LoginViewController: UIViewController {
                         self.displayError(errorString)
                     }
                 }
-
-            })
-            
-            ParseClient.sharedInstance().recentStudentLocations({ (success, errorString) in
-                performUIUpdatesOnMain {
-                    if success {
-                        print("didhello")
-                    } else {
-                        print("didruoh")
-                        self.displayError(errorString)
-                    }
-                }
-                
             })
             let controller = self.storyboard!.instantiateViewControllerWithIdentifier("ManagerNavigationController") as! UINavigationController
             self.presentViewController(controller, animated: true, completion: nil)

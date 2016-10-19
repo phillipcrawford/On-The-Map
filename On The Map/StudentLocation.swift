@@ -18,7 +18,8 @@ struct StudentLocation {
     let mediaURL: String
     let objectID: String
     let uniqueKey: String
-    
+    let createdAt: AnyObject
+    let updatedAt: AnyObject
     // MARK: Initializers
     
     // construct a TMDBMovie from a dictionary
@@ -32,6 +33,8 @@ struct StudentLocation {
         mediaURL = dictionary[ParseClient.JSONResponseKeys.MediaURL] as! String
         objectID = dictionary[ParseClient.JSONResponseKeys.ObjectID] as! String
         uniqueKey = dictionary[ParseClient.JSONResponseKeys.UniqueKey] as! String
+        createdAt = dictionary["createdAt"]!
+        updatedAt = dictionary["updatedAt"]!
         
     }
     
@@ -43,7 +46,11 @@ struct StudentLocation {
         for result in results {
             studentLocations.append(StudentLocation(dictionary: result))
         }
-        
+        for result in studentLocations {
+            print(result.firstName)
+            
+        }
+        print(studentLocations)
         return studentLocations
     }
 }

@@ -1,24 +1,24 @@
 //
-//  TabbedTableViewController.swift
-//  On The Map
+//  FavoritesTableViewController.swift
+//  TheMovieManager
 //
-//  Created by Phillip Crawford on 10/15/16.
-//  Copyright © 2016 Phillip Crawford. All rights reserved.
+//  Created by Jarrod Parkes on 2/26/15.
+//  Copyright (c) 2015 Jarrod Parkes. All rights reserved.
 //
 
 import UIKit
 
-// MARK: - TabbedTableViewController: UIViewController
+// MARK: - FavoritesViewController: UIViewController
 
 class TabbedTableViewController: UIViewController {
     
     // MARK: Properties
     
-    //var movies: [TMDBMovie] = [TMDBMovie]()
+    var studentLocations: [StudentLocation] = [StudentLocation]()
     
     // MARK: Outlets
     
-    @IBOutlet weak var moviesTableView: UITableView!
+    @IBOutlet weak var StudentLocationsTableView: UITableView!
     
     // MARK: Life Cycle
     
@@ -31,15 +31,15 @@ class TabbedTableViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        TMDBClient.sharedInstance().getWatchlistMovies { (movies, error) in
-            if let movies = movies {
-                self.movies = movies
+        ParseClient.sharedInstance().getStudentLocations { (studentLocations, error) in
+            if let studentLocations = studentLocations {
+                self.studentLocations = studentLocations
                 performUIUpdatesOnMain {
-                    self.moviesTableView.reloadData()
+                    self.StudentLocationsTableView.reloadData()
                 }
             } else {
                 print(error)
+                
             }
         }
     }
@@ -51,45 +51,45 @@ class TabbedTableViewController: UIViewController {
     }
 }
 
-// MARK: - WatchlistViewController: UITableViewDelegate, UITableViewDataSource
+// MARK: - FavoritesViewController: UITableViewDelegate, UITableViewDataSource
 
 extension TabbedTableViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         /* Get cell type */
-        let cellReuseIdentifier = "WatchlistTableViewCell"
-        let movie = movies[indexPath.row]
+        let cellReuseIdentifier = "FavoriteTableViewCell"
+        let studentLocation = studentLocations[indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier) as UITableViewCell!
         
         /* Set cell defaults */
-        cell.textLabel!.text = movie.title
-        cell.imageView!.image = UIImage(named: "Film")
+        cell.textLabel!.text = "\(studentLocation.firstName) \(studentLocation.lastName)"
+        cell.imageView!.image = UIImage(named: "pin")
         cell.imageView!.contentMode = UIViewContentMode.ScaleAspectFit
         
-        if let posterPath = movie.posterPath {
-            TMDBClient.sharedInstance().taskForGETImage(TMDBClient.PosterSizes.RowPoster, filePath: posterPath, completionHandlerForImage: { (imageData, error) in
-                if let image = UIImage(data: imageData!) {
-                    performUIUpdatesOnMain {
-                        cell.imageView!.image = image
-                    }
-                } else {
-                    print(error)
-                }
-            })
-        }
+//        if let posterPath = movie.posterPath {
+//            TMDBClient.sharedInstance().taskForGETImage(TMDBClient.PosterSizes.RowPoster, filePath: posterPath, completionHandlerForImage: { (imageData, error) in
+//                if let image = UIImage(data: imageData!) {
+//                    performUIUpdatesOnMain {
+//                        cell.imageView!.image = image
+//                    }
+//                } else {
+//                    print(error)
+//                }
+//            })
+//        }
         
         return cell
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movies.count
+        return studentLocations.count
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let controller = storyboard!.instantiateViewControllerWithIdentifier("MovieDetailViewController") as! MovieDetailViewController
-        controller.movie = movies[indexPath.row]
-        navigationController!.pushViewController(controller, animated: true)
+//        let controller = storyboard!.instantiateViewControllerWithIdentifier("MovieDetailViewController") as! MovieDetailViewController
+//        controller.movie = movies[indexPath.row]
+//        navigationController!.pushViewController(controller, animated: true)
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

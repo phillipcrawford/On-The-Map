@@ -91,8 +91,10 @@ extension ParseClient {
         static let Longitude = "longitude"
         static let MapString = "mapString"
         static let MediaURL = "mediaURL"
-        static let ObjectID = "objectID"
+        static let ObjectID = "objectId"
         static let UniqueKey = "uniqueKey"
+        
+        static let StudentResults = "results"
     }
     
     // MARK: UI
