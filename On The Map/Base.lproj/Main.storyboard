@@ -132,61 +132,13 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="nxo-sF-lle" kind="relationship" relationship="viewControllers" id="M1W-ok-ANI"/>
                         <segue destination="Ro0-cw-fTm" kind="relationship" relationship="viewControllers" id="XOH-Ha-Utr"/>
+                        <segue destination="HbU-4i-fbd" kind="relationship" relationship="viewControllers" id="VSe-vp-OaQ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bYF-xu-S4N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1652" y="530"/>
-        </scene>
-        <!--List-->
-        <scene sceneID="t2a-Q0-r14">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CMQ-82-1Hj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="nxo-sF-lle" customClass="TabbedTableViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="frR-Q8-FVu"/>
-                        <viewControllerLayoutGuide type="bottom" id="jsO-wh-Jdc"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Sy1-g2-7fN">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="K3h-2b-1Bd" userLabel="Student Locations Table View">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoriteTableViewCell" id="eU7-Z0-SPQ">
-                                        <rect key="frame" x="0.0" y="1" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eU7-Z0-SPQ" id="FXj-lR-f3s">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="nxo-sF-lle" id="oMh-nc-xk9"/>
-                                    <outlet property="delegate" destination="nxo-sF-lle" id="CT1-G6-imc"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="K3h-2b-1Bd" firstAttribute="top" secondItem="frR-Q8-FVu" secondAttribute="bottom" id="G59-0M-N95"/>
-                            <constraint firstItem="K3h-2b-1Bd" firstAttribute="bottom" secondItem="jsO-wh-Jdc" secondAttribute="top" id="PAD-UH-o6M"/>
-                            <constraint firstItem="K3h-2b-1Bd" firstAttribute="leading" secondItem="Sy1-g2-7fN" secondAttribute="leading" id="hXf-fn-iek"/>
-                            <constraint firstAttribute="trailing" secondItem="K3h-2b-1Bd" secondAttribute="trailing" id="pEc-IV-Tb7"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="List" image="list" id="pQJ-mH-M7L"/>
-                    <connections>
-                        <outlet property="StudentLocationsTableView" destination="K3h-2b-1Bd" id="nKs-6f-OSe"/>
-                    </connections>
-                </viewController>
-            </objects>
-            <point key="canvasLocation" x="2369" y="879"/>
         </scene>
         <!--Map-->
         <scene sceneID="lXP-HD-5bb">
@@ -223,6 +175,63 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4wb-ws-8Hr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2369" y="212"/>
+        </scene>
+        <!--List-->
+        <scene sceneID="NYL-tc-xSB">
+            <objects>
+                <viewController id="HbU-4i-fbd" userLabel="List" customClass="TabbedTableViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fXm-Ne-4hi"/>
+                        <viewControllerLayoutGuide type="bottom" id="4FY-go-LLF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="srS-z0-T7M">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="30" sectionFooterHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="S1n-3R-0gN" userLabel="Student Locations Table View">
+                                <rect key="frame" x="0.0" y="-1" width="600" height="601"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FavoriteTableViewCell" textLabel="QuA-xw-LHB" style="IBUITableViewCellStyleDefault" id="qvu-qj-RTt" userLabel="FavoriteTableViewCell">
+                                        <rect key="frame" x="0.0" y="94" width="600" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qvu-qj-RTt" id="BBK-EP-wqx">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QuA-xw-LHB">
+                                                    <rect key="frame" x="15" y="0.0" width="570" height="59"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="HbU-4i-fbd" id="zQu-F2-c7o"/>
+                                    <outlet property="delegate" destination="HbU-4i-fbd" id="Pfl-X2-8vp"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4FY-go-LLF" firstAttribute="top" secondItem="S1n-3R-0gN" secondAttribute="bottom" constant="-49" id="A5O-ca-PuN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="S1n-3R-0gN" secondAttribute="trailing" constant="-20" id="VmR-ky-MZR"/>
+                            <constraint firstItem="S1n-3R-0gN" firstAttribute="top" secondItem="fXm-Ne-4hi" secondAttribute="bottom" constant="-65" id="aLg-lY-aDA"/>
+                            <constraint firstItem="S1n-3R-0gN" firstAttribute="leading" secondItem="srS-z0-T7M" secondAttribute="leadingMargin" constant="-20" id="oKI-dp-Bgo"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="List" image="list" id="ih3-d9-4JJ"/>
+                    <connections>
+                        <outlet property="StudentLocationsTableView" destination="S1n-3R-0gN" id="SUc-cs-mPU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="omD-LX-qaK" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2369" y="878"/>
         </scene>
     </scenes>
     <resources>

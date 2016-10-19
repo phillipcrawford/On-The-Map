@@ -92,7 +92,7 @@ extension TabbedTableViewController: UITableViewDelegate, UITableViewDataSource 
 //        navigationController!.pushViewController(controller, animated: true)
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 100
-    }
+//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        return 100
+//    }
 }
