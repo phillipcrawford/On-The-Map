@@ -26,7 +26,7 @@ class TabbedTableViewController: UIViewController {
         super.viewDidLoad()
         
         // create and set the logout button
-        parentViewController!.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Reply, target: self, action: #selector(logout))
+//        parentViewController!.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Reply, target: self, action: #selector(logout))
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -58,7 +58,7 @@ extension TabbedTableViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         /* Get cell type */
-        let cellReuseIdentifier = "FavoriteTableViewCell"
+        let cellReuseIdentifier = "StudentLocationViewCell"
         let studentLocation = studentLocations[indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier) as UITableViewCell!
         
@@ -66,19 +66,7 @@ extension TabbedTableViewController: UITableViewDelegate, UITableViewDataSource 
         cell.textLabel!.text = "\(studentLocation.firstName) \(studentLocation.lastName)"
         cell.imageView!.image = UIImage(named: "pin")
         cell.imageView!.contentMode = UIViewContentMode.ScaleAspectFit
-        
-//        if let posterPath = movie.posterPath {
-//            TMDBClient.sharedInstance().taskForGETImage(TMDBClient.PosterSizes.RowPoster, filePath: posterPath, completionHandlerForImage: { (imageData, error) in
-//                if let image = UIImage(data: imageData!) {
-//                    performUIUpdatesOnMain {
-//                        cell.imageView!.image = image
-//                    }
-//                } else {
-//                    print(error)
-//                }
-//            })
-//        }
-        
+    
         return cell
     }
     
@@ -91,8 +79,4 @@ extension TabbedTableViewController: UITableViewDelegate, UITableViewDataSource 
 //        controller.movie = movies[indexPath.row]
 //        navigationController!.pushViewController(controller, animated: true)
     }
-    
-//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        return 100
-//    }
 }
