@@ -23,6 +23,7 @@
 		F01BA4C91DB5303300B21A91 /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01BA4C81DB5303300B21A91 /* ParseConstants.swift */; };
 		F01BA4CB1DB5305400B21A91 /* ParseConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01BA4CA1DB5305400B21A91 /* ParseConvenience.swift */; };
 		F01BA4CD1DB531D000B21A91 /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01BA4CC1DB531D000B21A91 /* StudentLocation.swift */; };
+		F01BA4CF1DB9702800B21A91 /* InformationPostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01BA4CE1DB9702800B21A91 /* InformationPostingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		F01BA4C81DB5303300B21A91 /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
 		F01BA4CA1DB5305400B21A91 /* ParseConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConvenience.swift; sourceTree = "<group>"; };
 		F01BA4CC1DB531D000B21A91 /* StudentLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
+		F01BA4CE1DB9702800B21A91 /* InformationPostingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationPostingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 				F01BA4AF1DA7E03700B21A91 /* LoginViewController.swift */,
 				F01BA4C11DB3332D00B21A91 /* TabbedTableViewController.swift */,
 				F01BA4C31DB333F300B21A91 /* TabbedMapViewController.swift */,
+				F01BA4CE1DB9702800B21A91 /* InformationPostingViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 				F01BA4CD1DB531D000B21A91 /* StudentLocation.swift in Sources */,
 				F01BA4CB1DB5305400B21A91 /* ParseConvenience.swift in Sources */,
 				F01BA48F1DA7DAA900B21A91 /* AppDelegate.swift in Sources */,
+				F01BA4CF1DB9702800B21A91 /* InformationPostingViewController.swift in Sources */,
 				F01BA4C91DB5303300B21A91 /* ParseConstants.swift in Sources */,
 				F01BA4B61DA859E900B21A91 /* UdacityConvenience.swift in Sources */,
 				F01BA4AE1DA7DE4000B21A91 /* BorderedButton.swift in Sources */,
