@@ -270,21 +270,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="umN-3P-STd">
-                                <rect key="frame" x="243" y="530" width="115" height="30"/>
-                                <state key="normal" title="Find on the Map"/>
-                                <connections>
-                                    <action selector="submitLocationButton:" destination="jbL-gG-VKf" eventType="touchUpInside" id="OeM-I5-JFo"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZgB-fe-YdX">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZgB-fe-YdX">
                                 <rect key="frame" x="0.0" y="490" width="600" height="110"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="110" id="ciI-66-Cle"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HVL-b5-db6">
@@ -294,16 +286,6 @@
                                     <action selector="submit:" destination="jbL-gG-VKf" eventType="touchUpInside" id="Mk5-dm-NP4"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you studying today?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vXa-ZK-sSs">
-                                <rect key="frame" x="0.0" y="64" width="600" height="106"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="106" id="vE6-It-BZn"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BLS-lk-x52" userLabel="Location Input Text View">
                                 <rect key="frame" x="0.0" y="170" width="600" height="320"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -319,14 +301,34 @@
                                     </mask>
                                 </variation>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you studying today?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vXa-ZK-sSs">
+                                <rect key="frame" x="0.0" y="64" width="600" height="106"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="106" id="vE6-It-BZn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="umN-3P-STd">
+                                <rect key="frame" x="243" y="430" width="115" height="30"/>
+                                <state key="normal" title="Find on the Map"/>
+                                <connections>
+                                    <action selector="submitLocationButton:" destination="jbL-gG-VKf" eventType="touchUpInside" id="OeM-I5-JFo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="vXa-ZK-sSs" firstAttribute="leading" secondItem="Z3Y-Ew-2P5" secondAttribute="leadingMargin" constant="-20" id="1Jl-ri-xbT"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vXa-ZK-sSs" secondAttribute="trailing" constant="-20" id="2IT-dW-GEP"/>
+                            <constraint firstItem="umN-3P-STd" firstAttribute="top" secondItem="BLS-lk-x52" secondAttribute="bottom" constant="40" id="BkY-cr-mId"/>
                             <constraint firstItem="ZgB-fe-YdX" firstAttribute="top" secondItem="BLS-lk-x52" secondAttribute="bottom" id="EF6-RP-4tM"/>
+                            <constraint firstItem="umN-3P-STd" firstAttribute="leading" secondItem="Z3Y-Ew-2P5" secondAttribute="leadingMargin" constant="223" id="Ecq-AO-ZMX"/>
                             <constraint firstItem="BLS-lk-x52" firstAttribute="leading" secondItem="Z3Y-Ew-2P5" secondAttribute="leadingMargin" constant="-20" id="GRe-6B-MBp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kXa-qA-IVf" secondAttribute="trailing" constant="-20" id="MCk-fV-Gov"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="umN-3P-STd" secondAttribute="trailing" constant="222" id="O1J-G0-43Q"/>
                             <constraint firstItem="kXa-qA-IVf" firstAttribute="top" secondItem="Ffm-ow-VaW" secondAttribute="bottom" id="Pfe-Rs-6QX"/>
                             <constraint firstItem="ZgB-fe-YdX" firstAttribute="leading" secondItem="Z3Y-Ew-2P5" secondAttribute="leadingMargin" constant="-20" id="aF0-gd-6ua"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ZgB-fe-YdX" secondAttribute="trailing" constant="-20" id="bvQ-z8-beY"/>
@@ -336,6 +338,13 @@
                             <constraint firstItem="BLS-lk-x52" firstAttribute="top" secondItem="vXa-ZK-sSs" secondAttribute="bottom" id="qV3-MV-z7P"/>
                             <constraint firstItem="vXa-ZK-sSs" firstAttribute="top" secondItem="kXa-qA-IVf" secondAttribute="bottom" id="yhg-Id-r44"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="BkY-cr-mId"/>
+                                <exclude reference="Ecq-AO-ZMX"/>
+                                <exclude reference="O1J-G0-43Q"/>
+                            </mask>
+                        </variation>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
