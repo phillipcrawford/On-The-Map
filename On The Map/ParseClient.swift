@@ -22,6 +22,11 @@ class ParseClient : NSObject {
     var userID : String? = nil
     var firstName: String? = nil
     var lastName: String? = nil
+    var latitude: Double? = nil
+    var longitude: Double? = nil
+    var mapString: String? = nil
+    var mediaURL: String? = nil
+    
     // MARK: Initializers
     
     override init() {

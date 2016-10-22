@@ -24,18 +24,15 @@ extension ParseClient {
      Bonus Step: Go ahead and get the user id 😄!
      */
     
-    func authenticateWithViewController(hostViewController: UIViewController, parameters: [String: String!], completionHandlerForAuth: (success: Bool, errorString: String?) -> Void) {
+    func setLocation(locationString: String, passedLatitude: Double, passedLongitude: Double){
+        mapString = locationString
+        latitude = passedLatitude
+        longitude = passedLongitude
         
-        // chain completion handlers for each request so that they run one after the other
-        getSessionID(parameters) { (success, sessionID, userID, errorString) in
-            
-            if success {
-                // success! we have the sessionID!
-                self.sessionID = sessionID!
-                self.userID = userID!
-                completionHandlerForAuth(success: success, errorString: errorString)
-            }
-        }
+    }
+    
+    func setLinkString(linkString: String){
+        mediaURL = linkString
     }
     
     func userData(completionHandlerForUserData: (success: Bool, errorString: String?) -> Void) {

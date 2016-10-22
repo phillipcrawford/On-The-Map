@@ -32,6 +32,7 @@ extension UdacityClient {
                 // success! we have the sessionID!
                 self.sessionID = sessionID!
                 self.userID = userID!
+                ParseClient.sharedInstance().userID = userID
                 completionHandlerForAuth(success: success, errorString: errorString)
             }
         }
@@ -41,7 +42,9 @@ extension UdacityClient {
         getUserData { (success, firstName, lastName, errorString) in
             if success {
                 self.firstName = firstName
+                ParseClient.sharedInstance().firstName = firstName
                 self.lastName = lastName
+                ParseClient.sharedInstance().lastName = lastName
                 completionHandlerForUserData(success: success, errorString: errorString)
             }
         }

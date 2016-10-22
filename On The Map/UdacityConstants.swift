@@ -13,36 +13,17 @@ extension UdacityClient {
     // MARK: Constants
     struct Constants {
         
-        // MARK: API Key
-        static let ApiKey : String = "a55aeb535cdb7bfcf9394f2c712ff8c0"
-        
         // MARK: URLs
         static let ApiScheme = "https"               /////////////
         static let ApiHost = "www.udacity.com"       /////////////
         static let ApiPath = "/api"                  /////////////
-        static let AuthorizationURL : String = "https://www.themoviedb.org/authenticate/"
     }
     
     // MARK: Methods
     struct Methods {
-        
-        // MARK: Account
-        static let Account = "/account"
-        static let AccountIDFavoriteMovies = "/account/{id}/favorite/movies"
-        static let AccountIDFavorite = "/account/{id}/favorite"
-        static let AccountIDWatchlistMovies = "/account/{id}/watchlist/movies"
-        static let AccountIDWatchlist = "/account/{id}/watchlist"
-        
-        // MARK: Authentication
-        static let AuthenticationTokenNew = "/authentication/token/new"
+    
         static let AuthenticationSessionNew = "/session"             ///////////
         static let User = "/users"                                   ///////////
-        
-        // MARK: Search
-        static let SearchMovie = "/search/movie"
-        
-        // MARK: Config
-        static let Config = "/configuration"
         
     }
     
@@ -55,28 +36,10 @@ extension UdacityClient {
     struct ParameterKeys {
         static let Username = "Username"            //////////////
         static let Password = "Password"            //////////////
-        static let ApiKey = "api_key"
-        static let SessionID = "session_id"
+    }
 
-        static let RequestToken = "request_token"
-        static let Query = "query"
-    }
-    
-    // MARK: JSON Body Keys
-    struct JSONBodyKeys {
-        static let MediaType = "media_type"
-        static let MediaID = "media_id"
-        static let Favorite = "favorite"
-        static let Watchlist = "watchlist"
-    }
-    
-    // MARK: JSON Response Keys
     struct JSONResponseKeys {
-        
-        // MARK: General
-        static let StatusMessage = "status_message"
-        static let StatusCode = "status_code"
-        
+
         // MARK: Authorization
         static let SessionID = "session"            //////////////
         static let UserID = "id"                    //////////////
