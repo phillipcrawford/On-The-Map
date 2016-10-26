@@ -24,27 +24,6 @@ extension ParseClient {
      Bonus Step: Go ahead and get the user id 😄!
      */
     
-    func setLocation(locationString: String, passedLatitude: Double, passedLongitude: Double){
-        mapString = locationString
-        latitude = passedLatitude
-        longitude = passedLongitude
-        
-    }
-    
-    func setLinkString(linkString: String){
-        mediaURL = linkString
-    }
-    
-    func userData(completionHandlerForUserData: (success: Bool, errorString: String?) -> Void) {
-        getUserData { (success, firstName, lastName, errorString) in
-            if success {
-                self.firstName = firstName
-                self.lastName = lastName
-                completionHandlerForUserData(success: success, errorString: errorString)
-            }
-        }
-    }
-    
     func getStudentLocations(completionHandlerForStudentLocations: (result: [StudentLocation]?, error: NSError?) -> Void) {
         let method = ParseClient.Methods.StudentLocation
         taskForGETMethod(method) { (results, error) in
@@ -62,43 +41,22 @@ extension ParseClient {
         }
     }
     
-    private func getUserData(completionHandlerForUser: (success: Bool, firstName: String?, lastName: String?, errorString: String?) -> Void) {
-        let method = "\(UdacityClient.Methods.User)" // user
-        taskForGETMethod(method) { (results, error) in
+    func postStudentLocation(completionHandlerForStudentLocation: (result: [StudentLocation]?, error: NSError?) -> Void) {
+        let method = ParseClient.Methods.StudentLocation
+        let jsonBody = "{\"\(ParseClient.JSONBodyKeys.UniqueKey)\": \"\(ParseClient.sharedInstance().userID!)\", \"\(ParseClient.JSONBodyKeys.FirstName)\": \"\(ParseClient.sharedInstance().firstName!)\", \"\(ParseClient.JSONBodyKeys.LastName)\": \"\(ParseClient.sharedInstance().lastName!)\",\"\(ParseClient.JSONBodyKeys.MapString)\": \"\(ParseClient.sharedInstance().mapString!)\", \"\(ParseClient.JSONBodyKeys.MediaURL)\": \"\(ParseClient.sharedInstance().mediaURL!)\",\"\(ParseClient.JSONBodyKeys.Latitude)\": \(ParseClient.sharedInstance().latitude!), \"\(ParseClient.JSONBodyKeys.Longitude)\": \(ParseClient.sharedInstance().longitude!)}"
+        taskForPOSTMethod(method, jsonBody: jsonBody) { (results, error) in
             if let error = error {
                 print(error)
-                completionHandlerForUser(success: false, firstName: nil, lastName: nil, errorString: "Failed (Get User Data).")
+                completionHandlerForStudentLocation(result: nil, error: error)
             } else {
-                if let firstName = results[UdacityClient.JSONResponseKeys.User]!![UdacityClient.JSONResponseKeys.FirstName]!! as? String, lastName = results[UdacityClient.JSONResponseKeys.User]!![UdacityClient.JSONResponseKeys.LastName]!! as? String {
-                    completionHandlerForUser(success: true, firstName: firstName, lastName: lastName, errorString: nil)
+                print(results)
+                if let results = results[ParseClient.JSONResponseKeys.StudentResults] as? [[String:AnyObject]] {
+                    let studentLocations = StudentLocation.studentLocationsFromResults(results)
+                    completionHandlerForStudentLocation(result: studentLocations, error: nil)
+                    print("AUTISMSPEAKS!")
                 } else {
-                    print("Could not find \(UdacityClient.JSONResponseKeys.SessionID) in \(results)")
-                    completionHandlerForUser(success: false, firstName: nil, lastName: nil, errorString: "Failed (Get User Data).")
-                }
-                print(results["user"]!!["first_name"]!!)
-                print(results["user"]!!["last_name"]!!)
-                
-            }
-        }
-    }
-    
-    private func getSessionID(parameters: [String: String!], completionHandlerForSession: (success: Bool, sessionID: String?, userID: String?, errorString: String?) -> Void) {
-        
-        /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
-        let jsonBody = "{\"udacity\": {\"username\": \"\(parameters[UdacityClient.ParameterKeys.Username]!)\", \"password\": \"\(parameters[UdacityClient.ParameterKeys.Password]!)\"}}"
-        /* 2. Make the request */
-        taskForPOSTMethod(Methods.AuthenticationSessionNew, parameters: parameters, jsonBody: jsonBody) { (results, error) in
-            
-            /* 3. Send the desired value(s) to completion handler */
-            if let error = error {
-                print(error)
-                completionHandlerForSession(success: false, sessionID: nil, userID: nil, errorString: "Login Failed (Session ID).")
-            } else {
-                if let sessionID = results[UdacityClient.JSONResponseKeys.SessionID]!![UdacityClient.JSONResponseKeys.UserID]!! as? String, userID = results[UdacityClient.JSONResponseKeys.Account]!![UdacityClient.JSONResponseKeys.Key]!! as? String {
-                    completionHandlerForSession(success: true, sessionID: sessionID, userID: userID, errorString: nil)
-                } else {
-                    print("Could not find \(UdacityClient.JSONResponseKeys.SessionID) in \(results)")
-                    completionHandlerForSession(success: false, sessionID: nil, userID: nil, errorString: "Login Failed (Session ID).")
+                    completionHandlerForStudentLocation(result: nil, error: NSError(domain: "getStudentLocations parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse getStudentLocations"]))
+                    print("ANDITSAYSSHUTUP!")
                 }
             }
         }

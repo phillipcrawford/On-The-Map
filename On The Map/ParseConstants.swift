@@ -20,71 +20,15 @@ extension ParseClient {
         static let ApiScheme = "https"               /////////////
         static let ApiHost = "parse.udacity.com"       /////////////
         static let ApiPath = "/parse/classes"                  /////////////
-        static let AuthorizationURL : String = "https://www.themoviedb.org/authenticate/"
     }
     
     // MARK: Methods
     struct Methods {
-        
-        // MARK: Account
-        static let Account = "/account"
-        static let AccountIDFavoriteMovies = "/account/{id}/favorite/movies"
-        static let AccountIDFavorite = "/account/{id}/favorite"
-        static let AccountIDWatchlistMovies = "/account/{id}/watchlist/movies"
-        static let AccountIDWatchlist = "/account/{id}/watchlist"
-        
-        // MARK: Authentication
-        static let AuthenticationTokenNew = "/authentication/token/new"
-        static let AuthenticationSessionNew = "/session"             ///////////
         static let StudentLocation = "/StudentLocation"              ///////////
-        
-        // MARK: Search
-        static let SearchMovie = "/search/movie"
-        
-        // MARK: Config
-        static let Config = "/configuration"
-        
-    }
-    
-    // MARK: URL Keys
-    struct URLKeys {
-        static let UserID = "id"
-    }
-    
-    // MARK: Parameter Keys
-    struct ParameterKeys {
-        static let Username = "Username"            //////////////
-        static let Password = "Password"            //////////////
-        static let ApiKey = "api_key"
-        static let SessionID = "session_id"
-        
-        static let RequestToken = "request_token"
-        static let Query = "query"
     }
     
     // MARK: JSON Body Keys
     struct JSONBodyKeys {
-        static let MediaType = "media_type"
-        static let MediaID = "media_id"
-        static let Favorite = "favorite"
-        static let Watchlist = "watchlist"
-    }
-    
-    // MARK: JSON Response Keys
-    struct JSONResponseKeys {
-        
-        // MARK: General
-        static let StatusMessage = "status_message"
-        static let StatusCode = "status_code"
-        
-        // MARK: Authorization
-        static let SessionID = "session"            //////////////
-        static let UserID = "id"                    //////////////
-        static let Account = "account"              //////////////
-        static let Key = "key"                      //////////////
-        
-        // MARK: StudentLocation Keys
-        
         static let FirstName = "firstName"
         static let LastName = "lastName"
         static let Latitude = "latitude"
@@ -93,7 +37,18 @@ extension ParseClient {
         static let MediaURL = "mediaURL"
         static let ObjectID = "objectId"
         static let UniqueKey = "uniqueKey"
-        
+    }
+    
+    // MARK: JSON Response Keys
+    struct JSONResponseKeys {
+        static let FirstName = "firstName"
+        static let LastName = "lastName"
+        static let Latitude = "latitude"
+        static let Longitude = "longitude"
+        static let MapString = "mapString"
+        static let MediaURL = "mediaURL"
+        static let ObjectID = "objectId"
+        static let UniqueKey = "uniqueKey"
         static let StudentResults = "results"
     }
     

@@ -9,54 +9,70 @@
 import UIKit
 import MapKit
 
-/**
- * This view controller demonstrates the objects involved in displaying pins on a map.
- *
- * The map is a MKMapView.
- * The pins are represented by MKPointAnnotation instances.
- *
- * The view controller conforms to the MKMapViewDelegate so that it can receive a method
- * invocation when a pin annotation is tapped. It accomplishes this using two delegate
- * methods: one to put a small "info" button on the right side of each pin, and one to
- * respond when the "info" button is tapped.
- */
-
-class InformationPostingViewController: UIViewController, MKMapViewDelegate {
-
-    // The map. See the setup in the Storyboard file. Note particularly that the view controller
-    // is set up as the map view's delegate.
-    var latitude: Double?
-    var longitude: Double?
+class InformationPostingViewController: UIViewController, UITextViewDelegate, MKMapViewDelegate {
     
-    //@IBOutlet weak var prompt: UILabel!                     //1
-    @IBOutlet weak var locationInputText: UITextView!       //1
-    //@IBOutlet weak var graySpace: UILabel!                  //1
-    @IBOutlet weak var submitLocationButton: UIButton!      //1
+    var studentLocations: [StudentLocation] = [StudentLocation]()
     
-    @IBOutlet weak var mapView: MKMapView!                  //2
-    @IBOutlet weak var linkText: UITextView!                //2
-    @IBOutlet weak var submit: UIButton!                    //2
+    @IBOutlet weak var view1: UIView!
+    @IBOutlet weak var view2: UIView!
     
-    @IBAction func submitLocationButton(sender: AnyObject) {//1
-        let locationString = locationInputText.text
+    @IBAction func cancel1(sender: AnyObject) {
+    }
+    
+    @IBOutlet weak var textView1: UITextView!
+    
+    @IBOutlet weak var button1: UIButton!
+    @IBAction func findOnTheMap(sender: AnyObject) {
+        let locationString = textView1.text
+        ParseClient.sharedInstance().mapString = locationString
         geocoding(locationString) {
-            print("\(self.coordinates)")
-            ParseClient.sharedInstance().setLocation(locationString, passedLatitude: self.latitude!, passedLongitude: self.longitude!)
+            self.view1.hidden = true
+            self.view2.hidden = false
+        }
+    }
+    ////////////////
+    @IBAction func cancel2(sender: AnyObject) {
+        self.view1.hidden = false
+        self.view2.hidden = true
+    }
+    
+    @IBOutlet weak var textView2: UITextView!
+    @IBOutlet weak var mapView: MKMapView!
+    
+    @IBOutlet weak var button2: UIButton!
+    @IBAction func submit(sender: AnyObject) {
+        let linkString = textView2.text
+        print(linkString)
+        ParseClient.sharedInstance().mediaURL = linkString
+        ParseClient.sharedInstance().postStudentLocation { (studentLocations, error) in
+            if let studentLocations = studentLocations {
+                self.studentLocations = studentLocations
+            } else {
+                print(error)
+                
+            }
         }
         
     }
     
-    @IBAction func submit(sender: AnyObject) {              //2
-        let linkString = linkText.text
-        print(linkString)
-        ParseClient.sharedInstance().setLinkString(linkString)
+    override func viewDidLoad() {
+        textView1.delegate = self
+        textView2.delegate = self
+        button1.layer.cornerRadius = 5
+        button2.layer.cornerRadius = 5
     }
     
-    override func viewDidLoad() {
+    override func viewWillAppear(animated: Bool) {
+        view2.hidden = true
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
     }
-    
-    var coordinates = (0.0, 0.0)
+    func textViewDidBeginEditing(textView: UITextView) {
+        textView.text = nil
+    }
     
     func geocoding(location: String, completion: () -> ()) {
         CLGeocoder().geocodeAddressString(location) { (placemarks, error) in
@@ -64,13 +80,12 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate {
                 let placemark = placemarks?[0]
                 let location = placemark!.location
                 let coordinate = location?.coordinate
-                self.coordinates = (coordinate!.latitude, coordinate!.longitude)
-                self.latitude = coordinate!.latitude
-                self.longitude = coordinate!.longitude
-                print("Inside completion handler: \(self.coordinates)")
+                ParseClient.sharedInstance().latitude = coordinate!.latitude
+                ParseClient.sharedInstance().longitude = coordinate!.longitude
+                print(coordinate!.latitude)
+                print(coordinate!.longitude)
                 completion()
             }
         }
-        print("Outside completion handler: \(coordinates)")
     }
 }

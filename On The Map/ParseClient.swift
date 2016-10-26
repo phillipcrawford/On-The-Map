@@ -19,7 +19,7 @@ class ParseClient : NSObject {
     
     // authentication state
     var sessionID : String? = nil
-    var userID : String? = nil
+    var userID : String? = nil      //also uniqueKey
     var firstName: String? = nil
     var lastName: String? = nil
     var latitude: Double? = nil
@@ -80,7 +80,7 @@ class ParseClient : NSObject {
     
     // MARK: POST
     
-    func taskForPOSTMethod(method: String, parameters: [String:String!], jsonBody: String, completionHandlerForPOST: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    func taskForPOSTMethod(method: String, jsonBody: String, completionHandlerForPOST: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
         /* 1. Set the parameters */
         //        var parametersWithApiKey = parameters
@@ -89,7 +89,8 @@ class ParseClient : NSObject {
         /* 2/3. Build the URL, Configure the request */
         let request = NSMutableURLRequest(URL: tmdbURLFromParameters(method))
         request.HTTPMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
+        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.HTTPBody = jsonBody.dataUsingEncoding(NSUTF8StringEncoding)
         
@@ -99,7 +100,7 @@ class ParseClient : NSObject {
             func sendError(error: String) {
                 print(error)
                 let userInfo = [NSLocalizedDescriptionKey : error]
-                completionHandlerForPOST(result: nil, error: NSError(domain: "taskForGETMethod", code: 1, userInfo: userInfo))
+                completionHandlerForPOST(result: nil, error: NSError(domain: "taskForPOSTMethod", code: 1, userInfo: userInfo))
             }
             
             /* GUARD: Was there an error? */
@@ -121,8 +122,7 @@ class ParseClient : NSObject {
             }
             
             /* 5/6. Parse the data and use the data (happens in completion handler) */
-            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
-            self.convertDataWithCompletionHandler(newData, completionHandlerForConvertData: completionHandlerForPOST)
+            self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForPOST)
         }
         
         /* 7. Start the request */
@@ -152,7 +152,6 @@ class ParseClient : NSObject {
             let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]
             completionHandlerForConvertData(result: nil, error: NSError(domain: "convertDataWithCompletionHandler", code: 1, userInfo: userInfo))
         }
-        
         completionHandlerForConvertData(result: parsedResult, error: nil)
     }
     
