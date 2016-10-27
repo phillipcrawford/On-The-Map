@@ -12,7 +12,6 @@
 		F01BA4961DA7DAA900B21A91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F01BA4951DA7DAA900B21A91 /* Assets.xcassets */; };
 		F01BA4991DA7DAA900B21A91 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F01BA4971DA7DAA900B21A91 /* LaunchScreen.storyboard */; };
 		F01BA4AA1DA7DD1F00B21A91 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01BA4A91DA7DD1F00B21A91 /* GCDBlackBox.swift */; };
-		F01BA4AE1DA7DE4000B21A91 /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01BA4AD1DA7DE4000B21A91 /* BorderedButton.swift */; };
 		F01BA4B01DA7E03700B21A91 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01BA4AF1DA7E03700B21A91 /* LoginViewController.swift */; };
 		F01BA4B21DA7F41F00B21A91 /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01BA4B11DA7F41F00B21A91 /* UdacityConstants.swift */; };
 		F01BA4B61DA859E900B21A91 /* UdacityConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01BA4B51DA859E900B21A91 /* UdacityConvenience.swift */; };
@@ -34,7 +33,6 @@
 		F01BA4981DA7DAA900B21A91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F01BA49A1DA7DAA900B21A91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F01BA4A91DA7DD1F00B21A91 /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GCDBlackBox.swift; path = ../GCDBlackBox.swift; sourceTree = "<group>"; };
-		F01BA4AD1DA7DE4000B21A91 /* BorderedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BorderedButton.swift; path = ../BorderedButton.swift; sourceTree = "<group>"; };
 		F01BA4AF1DA7E03700B21A91 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F01BA4B11DA7F41F00B21A91 /* UdacityConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConstants.swift; sourceTree = "<group>"; };
 		F01BA4B51DA859E900B21A91 /* UdacityConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConvenience.swift; sourceTree = "<group>"; };
@@ -81,7 +79,6 @@
 				F01BA48E1DA7DAA900B21A91 /* AppDelegate.swift */,
 				F01BA4A91DA7DD1F00B21A91 /* GCDBlackBox.swift */,
 				F01BA4A21DA7DC5400B21A91 /* Model */,
-				F01BA4A51DA7DC7500B21A91 /* View */,
 				F01BA4A61DA7DC8100B21A91 /* Controller */,
 				F01BA4A71DA7DCA600B21A91 /* Assets */,
 				F01BA4A81DA7DCB100B21A91 /* Supporting Files */,
@@ -114,14 +111,6 @@
 				F01BA4B51DA859E900B21A91 /* UdacityConvenience.swift */,
 			);
 			name = Udacity;
-			sourceTree = "<group>";
-		};
-		F01BA4A51DA7DC7500B21A91 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				F01BA4AD1DA7DE4000B21A91 /* BorderedButton.swift */,
-			);
-			name = View;
 			sourceTree = "<group>";
 		};
 		F01BA4A61DA7DC8100B21A91 /* Controller */ = {
@@ -242,7 +231,6 @@
 				F01BA4CF1DB9702800B21A91 /* InformationPostingViewController.swift in Sources */,
 				F01BA4C91DB5303300B21A91 /* ParseConstants.swift in Sources */,
 				F01BA4B61DA859E900B21A91 /* UdacityConvenience.swift in Sources */,
-				F01BA4AE1DA7DE4000B21A91 /* BorderedButton.swift in Sources */,
 				F01BA4B01DA7E03700B21A91 /* LoginViewController.swift in Sources */,
 				F01BA4C21DB3332D00B21A91 /* TabbedTableViewController.swift in Sources */,
 				F01BA4C71DB5300200B21A91 /* ParseClient.swift in Sources */,

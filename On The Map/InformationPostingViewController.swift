@@ -26,14 +26,18 @@ class InformationPostingViewController: UIViewController, UITextViewDelegate, MK
         let locationString = textView1.text
         ParseClient.sharedInstance().mapString = locationString
         geocoding(locationString) {
-            self.view1.hidden = true
-            self.view2.hidden = false
+            UIView.animateWithDuration(1.5, animations: {
+                self.view1.hidden = true
+                self.view2.hidden = false
+            })
         }
     }
     ////////////////
     @IBAction func cancel2(sender: AnyObject) {
-        self.view1.hidden = false
-        self.view2.hidden = true
+        UIView.animateWithDuration(1.5, animations: {
+            self.view1.hidden = false
+            self.view2.hidden = true
+        })
     }
     
     @IBOutlet weak var textView2: UITextView!

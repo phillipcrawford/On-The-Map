@@ -19,9 +19,9 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var loginButton: BorderedButton!
+    @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var debugTextLabel: UILabel!
-    @IBOutlet weak var movieImageView: UIImageView!
+    @IBOutlet weak var logoImageView: UIImageView!
     
     // MARK: Life Cycle
     
@@ -29,7 +29,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         // get the app delegate
-        configureUI()
+        //configureUI()
         
         subscribeToNotification(UIKeyboardWillShowNotification, selector: #selector(keyboardWillShow))
         subscribeToNotification(UIKeyboardWillHideNotification, selector: #selector(keyboardWillHide))
@@ -45,7 +45,6 @@ class LoginViewController: UIViewController {
     // MARK: Login
     
     @IBAction func loginPressed(sender: AnyObject) {
-        
         userDidTapView(self)
         let methodParameters: [String: String!] = [UdacityClient.ParameterKeys.Username: usernameTextField.text, UdacityClient.ParameterKeys.Password: passwordTextField.text]
         if usernameTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
@@ -103,14 +102,14 @@ extension LoginViewController: UITextFieldDelegate {
     func keyboardWillShow(notification: NSNotification) {
         if !keyboardOnScreen {
             view.frame.origin.y -= keyboardHeight(notification)
-            movieImageView.hidden = true
+            logoImageView.hidden = true
         }
     }
     
     func keyboardWillHide(notification: NSNotification) {
         if keyboardOnScreen {
             view.frame.origin.y += keyboardHeight(notification)
-            movieImageView.hidden = false
+            logoImageView.hidden = false
         }
     }
     
@@ -159,36 +158,12 @@ extension LoginViewController {
         }
     }
     
-    private func configureUI() {
-        
-        // configure background gradient
-        let backgroundGradient = CAGradientLayer()
-        backgroundGradient.colors = [UdacityClient.UI.LoginColorTop, UdacityClient.UI.LoginColorBottom]
-        backgroundGradient.locations = [0.0, 1.0]
-        backgroundGradient.frame = view.frame
-        view.layer.insertSublayer(backgroundGradient, atIndex: 0)
-        
-        configureTextField(usernameTextField)
-        configureTextField(passwordTextField)
-    }
-    
     private func displayError(errorString: String?) {
         if let errorString = errorString {
             debugTextLabel.text = errorString
         }
     }
     
-    private func configureTextField(textField: UITextField) {
-        let textFieldPaddingViewFrame = CGRectMake(0.0, 0.0, 13.0, 0.0)
-        let textFieldPaddingView = UIView(frame: textFieldPaddingViewFrame)
-        textField.leftView = textFieldPaddingView
-        textField.leftViewMode = .Always
-        textField.backgroundColor = UdacityClient.UI.GreyColor
-        textField.textColor = UdacityClient.UI.BlueColor
-        textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
-        textField.tintColor = UdacityClient.UI.BlueColor
-        textField.delegate = self
-    }
 }
 
 // MARK: - LoginViewController (Notifications)
