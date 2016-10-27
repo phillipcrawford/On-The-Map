@@ -43,7 +43,6 @@ class LoginViewController: UIViewController {
     }
     
     // MARK: Login
-    
     @IBAction func loginPressed(sender: AnyObject) {
         userDidTapView(self)
         let methodParameters: [String: String!] = [UdacityClient.ParameterKeys.Username: usernameTextField.text, UdacityClient.ParameterKeys.Password: passwordTextField.text]
@@ -63,6 +62,13 @@ class LoginViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    // MARK: Sign Up
+    @IBAction func signupButton(sender: AnyObject) {
+        let app = UIApplication.sharedApplication()
+        let toOpen = UdacityClient.Constants.SignUp
+        app.openURL(NSURL(string: toOpen)!)
     }
     
     private func completeLogin() {

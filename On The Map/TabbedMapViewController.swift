@@ -128,7 +128,7 @@ class TabbedMapViewController: UIViewController, MKMapViewDelegate {
                 "latitude" : 28.1461248,
                 "longitude" : -82.75676799999999,
                 "mapString" : "Tarpon Springs, FL",
-                "mediaURL" : "www.linkedin.com/in/jessicauelmen/en",
+                "mediaURL" : "http://www.linkedin.com/in/jessicauelmen/en",
                 "objectId" : "kj18GEaWD8",
                 "uniqueKey" : 872458750,
                 "updatedAt" : "2015-03-09T22:07:09.593Z"
