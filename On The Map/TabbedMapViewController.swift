@@ -31,7 +31,6 @@ class TabbedMapViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         parentViewController!.navigationItem.rightBarButtonItems![0] = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: #selector(loadMap))
-    
         ParseClient.sharedInstance().getStudentLocations { (studentLocations, error) in
             if let studentLocations = studentLocations {
                 self.studentLocations = studentLocations
@@ -40,13 +39,13 @@ class TabbedMapViewController: UIViewController, MKMapViewDelegate {
             } else {
                 print(error)
             }
-        }
-        
-        loadMap()
+        } 
     }
     
     override func viewWillAppear(animated: Bool) {
-      //loadMap()
+        performSlowUpdate {
+            self.loadMap()
+        }
     }
     override func viewDidAppear(animated: Bool){
         super.viewDidAppear(animated)
@@ -57,7 +56,6 @@ class TabbedMapViewController: UIViewController, MKMapViewDelegate {
         var annotations = [MKPointAnnotation]()
         // The "locations" array is an array of dictionary objects that are similar to the JSON
         // data that you can download from parse.
-        print("nothign")
         for dictionary in self.studentLocations {
             
             // Notice that the float values are being used to create CLLocationDegree values.
@@ -69,11 +67,8 @@ class TabbedMapViewController: UIViewController, MKMapViewDelegate {
             let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
             
             let first = dictionary.firstName
-            //print(first)
             let last = dictionary.lastName
-            //print(last)
             let mediaURL = dictionary.mediaURL
-            print(mediaURL)
             // Here we create the annotation and set its coordiate, title, and subtitle properties
             let annotation = MKPointAnnotation()
             annotation.coordinate = coordinate
@@ -102,7 +97,6 @@ class TabbedMapViewController: UIViewController, MKMapViewDelegate {
         if pinView == nil {
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             pinView!.canShowCallout = true
-            pinView!.pinColor = .Red
             pinView!.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
         }
         else {

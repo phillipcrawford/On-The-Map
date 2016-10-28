@@ -40,7 +40,7 @@ class InformationPostingViewController: UIViewController, UITextViewDelegate, MK
             self.view2.hidden = true
         })
     }
-    
+                
     @IBOutlet weak var textView2: UITextView!
     @IBOutlet weak var mapView: MKMapView!
     
@@ -57,7 +57,6 @@ class InformationPostingViewController: UIViewController, UITextViewDelegate, MK
                 
             }
         }
-        
     }
     
     override func viewDidLoad() {
@@ -73,7 +72,6 @@ class InformationPostingViewController: UIViewController, UITextViewDelegate, MK
     
     override func viewDidAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
     }
     func textViewDidBeginEditing(textView: UITextView) {
         textView.text = nil
@@ -89,6 +87,12 @@ class InformationPostingViewController: UIViewController, UITextViewDelegate, MK
                 ParseClient.sharedInstance().longitude = coordinate!.longitude
                 print(coordinate!.latitude)
                 print(coordinate!.longitude)
+                let center = CLLocationCoordinate2D(latitude: coordinate!.latitude, longitude: coordinate!.longitude)
+                let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+                self.mapView.setRegion(region, animated: true)
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = center
+                annotation.title = ParseClient.sharedInstance().mapString
                 completion()
             }
         }
