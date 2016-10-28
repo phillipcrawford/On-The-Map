@@ -91,7 +91,7 @@ class UdacityClient : NSObject {
             func sendError(error: String) {
                 print(error)
                 let userInfo = [NSLocalizedDescriptionKey : error]
-                completionHandlerForPOST(result: nil, error: NSError(domain: "taskForGETMethod", code: 1, userInfo: userInfo))
+                completionHandlerForPOST(result: nil, error: NSError(domain: "taskForPOSTMethod", code: 1, userInfo: userInfo))
             }
             
             /* GUARD: Was there an error? */
@@ -102,7 +102,8 @@ class UdacityClient : NSObject {
             
             /* GUARD: Did we get a successful 2XX response? */
             guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
-                sendError("Your request returned a status code other than 2xx!")
+                let userInfo = [NSLocalizedDescriptionKey : "Your request returned a status code other than 2xx!"]
+                completionHandlerForPOST(result: nil, error: NSError(domain: "completionHandlerForPOST", code: 1, userInfo: userInfo))
                 return
             }
             
@@ -144,7 +145,6 @@ class UdacityClient : NSObject {
             let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]
             completionHandlerForConvertData(result: nil, error: NSError(domain: "convertDataWithCompletionHandler", code: 1, userInfo: userInfo))
         }
-        //print(parsedResult)
         completionHandlerForConvertData(result: parsedResult, error: nil)
     }
     

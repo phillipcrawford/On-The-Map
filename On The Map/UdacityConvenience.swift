@@ -19,8 +19,8 @@ extension UdacityClient {
                 self.sessionID = sessionID!
                 self.userID = userID!
                 ParseClient.sharedInstance().userID = userID
-                completionHandlerForAuth(success: success, errorString: errorString)
             }
+            completionHandlerForAuth(success: success, errorString: errorString)
         }
     }
     
@@ -44,9 +44,9 @@ extension UdacityClient {
         taskForPOSTMethod(Methods.AuthenticationSessionNew, jsonBody: jsonBody) { (results, error) in
             
             /* 3. Send the desired value(s) to completion handler */
-            if let error = error {
-                print(error)
-                completionHandlerForSession(success: false, sessionID: nil, userID: nil, errorString: "Login Failed (Session ID).")
+            if error != nil {
+                //print(error)
+                completionHandlerForSession(success: false, sessionID: nil, userID: nil, errorString: "Login Failed (Incorrect Username or Password).")
             } else {
                 if let sessionID = results[UdacityClient.JSONResponseKeys.SessionID]!![UdacityClient.JSONResponseKeys.UserID]!! as? String, userID = results[UdacityClient.JSONResponseKeys.Account]!![UdacityClient.JSONResponseKeys.Key]!! as? String {
                     completionHandlerForSession(success: true, sessionID: sessionID, userID: userID, errorString: nil)
@@ -71,11 +71,7 @@ extension UdacityClient {
                     print("Could not find \(UdacityClient.JSONResponseKeys.SessionID) in \(results)")
                     completionHandlerForUser(success: false, firstName: nil, lastName: nil, errorString: "Failed (Get User Data).")
                 }
-                print(results["user"]!!["first_name"]!!)
-                print(results["user"]!!["last_name"]!!)
-                
             }
-        
         }
     }
 }

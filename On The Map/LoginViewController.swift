@@ -53,11 +53,10 @@ class LoginViewController: UIViewController {
             UdacityClient.sharedInstance().authenticateWithViewController(self, parameters: methodParameters) {(success, errorString) in
                 performUIUpdatesOnMain {
                     if success {
-                        print("hello")
                         self.completeLogin()
                     } else {
-                        print("ruoh")
-                        self.displayError(errorString)
+                        self.alertWithError(errorString!)
+                        self.setUIEnabled(true)
                     }
                 }
             }
@@ -75,13 +74,10 @@ class LoginViewController: UIViewController {
         performUIUpdatesOnMain {
             self.debugTextLabel.text = ""
             self.setUIEnabled(true)
-            print("heello")
             UdacityClient.sharedInstance().userData({ (success, errorString) in
                 performUIUpdatesOnMain {
                     if success {
-                        print("didhello")
                     } else {
-                        print("didruoh")
                         self.displayError(errorString)
                     }
                 }
@@ -90,6 +86,13 @@ class LoginViewController: UIViewController {
             self.presentViewController(controller, animated: true, completion: nil)
         }
     }
+    
+    private func alertWithError(error: String) {
+        let alertView = UIAlertController(title: "Login Error", message: error, preferredStyle: .Alert)
+        alertView.addAction(UIAlertAction(title: "Dismiss", style: .Cancel, handler: nil))
+        self.presentViewController(alertView, animated: true, completion: nil)
+    }
+    
 }
 
 // MARK: - LoginViewController: UITextFieldDelegate

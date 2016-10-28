@@ -27,7 +27,11 @@ class TabbedTableViewController: UIViewController {
         
         // create and set the logout button
         parentViewController!.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Reply, target: self, action: #selector(logout))
-        parentViewController!.navigationItem.rightBarButtonItems![0] = UIBarButtonItem(barButtonSystemItem: .Reply, target: self, action: #selector(info))
+        //let rightBarButton = parentViewController!.navigationItem.rightBarButtonItems![1]
+        
+        parentViewController!.navigationItem.rightBarButtonItems![1] = UIBarButtonItem(barButtonSystemItem: .Reply, target: self, action: #selector(info))
+        
+        parentViewController!.navigationItem.rightBarButtonItems![0] = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: #selector(info))
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -56,7 +60,7 @@ class TabbedTableViewController: UIViewController {
     }
 }
 
-// MARK: - FavoritesViewController: UITableViewDelegate, UITableViewDataSource
+// MARK: - TabbedTableViewController: UITableViewDelegate, UITableViewDataSource
 
 extension TabbedTableViewController: UITableViewDelegate, UITableViewDataSource {
     
