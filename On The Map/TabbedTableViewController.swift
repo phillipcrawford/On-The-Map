@@ -65,8 +65,15 @@ extension TabbedTableViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let studentLocation = studentLocations[indexPath.row]
+        
+        let app = UIApplication.sharedApplication()
+        let toOpen = studentLocation.mediaURL
+        app.openURL(NSURL(string: toOpen)!)
 //        let controller = storyboard!.instantiateViewControllerWithIdentifier("MovieDetailViewController") as! MovieDetailViewController
 //        controller.movie = movies[indexPath.row]
 //        navigationController!.pushViewController(controller, animated: true)
     }
+    // This delegate method is implemented to respond to taps. It opens the system browser
+    // to the URL specified in the annotationViews subtitle property.
 }

@@ -30,7 +30,6 @@ class TabbedMapViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        parentViewController!.navigationItem.rightBarButtonItems![0] = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: #selector(loadMap))
         ParseClient.sharedInstance().getStudentLocations { (studentLocations, error) in
             if let studentLocations = studentLocations {
                 self.studentLocations = studentLocations

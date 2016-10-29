@@ -50,7 +50,7 @@ class LoginViewController: UIViewController {
             debugTextLabel.text = "Username or Password Empty."
         } else {
             setUIEnabled(false)
-            UdacityClient.sharedInstance().authenticateWithViewController(self, parameters: methodParameters) {(success, errorString) in
+            UdacityClient.sharedInstance().authenticateWithViewController(methodParameters) {(success, errorString) in
                 performUIUpdatesOnMain {
                     if success {
                         self.completeLogin()

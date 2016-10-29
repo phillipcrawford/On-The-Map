@@ -13,7 +13,7 @@ import Foundation
 
 extension UdacityClient {
     
-    func authenticateWithViewController(hostViewController: UIViewController, parameters: [String: String!], completionHandlerForAuth: (success: Bool, errorString: String?) -> Void) {
+    func authenticateWithViewController(parameters: [String: String!], completionHandlerForAuth: (success: Bool, errorString: String?) -> Void) {
         getSessionID(parameters) { (success, sessionID, userID, errorString) in
             if success {
                 self.sessionID = sessionID!

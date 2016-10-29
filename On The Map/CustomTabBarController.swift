@@ -23,6 +23,13 @@ class CustomTabBarController: UITabBarController {
     
     @IBAction func refresh(sender: AnyObject) {
         self.viewDidLoad()
+        self.viewWillAppear(true)
+        self.viewDidAppear(true)
+        performSlowUpdate(){
+            self.viewDidLoad()
+            self.viewWillAppear(true)
+            self.viewDidAppear(true)
+        }
     }
 
 }
