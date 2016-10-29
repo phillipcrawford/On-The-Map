@@ -50,10 +50,9 @@ extension ParseClient {
                 completionHandlerForStudentLocation(result: nil, error: error)
             } else {
                 print(results)
-                if let results = results[ParseClient.JSONResponseKeys.StudentResults] as? [[String:AnyObject]] {
-                    let studentLocations = StudentLocation.studentLocationsFromResults(results)
-                    completionHandlerForStudentLocation(result: studentLocations, error: nil)
-                    print("AUTISMSPEAKS!")
+                if let results = results as? [String:AnyObject!] {
+                    let currentStudent = StudentLocation.currentStudent(results)
+                    completionHandlerForStudentLocation(result: currentStudent, error: nil)
                 } else {
                     completionHandlerForStudentLocation(result: nil, error: NSError(domain: "getStudentLocations parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse getStudentLocations"]))
                     print("ANDITSAYSSHUTUP!")

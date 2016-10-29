@@ -38,6 +38,24 @@ struct StudentLocation {
         
     }
     
+    static func currentStudent(results: [String:AnyObject]) -> [StudentLocation] {
+        var studentLocations = [StudentLocation]()
+        var newResult = [String:AnyObject]()
+        newResult[ParseClient.JSONResponseKeys.FirstName] = ParseClient.sharedInstance().firstName
+        newResult[ParseClient.JSONResponseKeys.LastName] = ParseClient.sharedInstance().lastName
+        newResult[ParseClient.JSONResponseKeys.Latitude] = ParseClient.sharedInstance().latitude
+        newResult[ParseClient.JSONResponseKeys.Longitude] = ParseClient.sharedInstance().longitude
+        newResult[ParseClient.JSONResponseKeys.MapString] = ParseClient.sharedInstance().mapString
+        newResult[ParseClient.JSONResponseKeys.MediaURL] = ParseClient.sharedInstance().mediaURL
+        newResult["objectId"] = results["objectId"]
+        newResult[ParseClient.JSONResponseKeys.UniqueKey] = ParseClient.sharedInstance().userID
+        newResult["createdAt"] = results["createdAt"]
+        newResult["updatedAt"] = ""
+        
+        studentLocations.append(StudentLocation(dictionary: newResult))
+        return studentLocations
+    }
+    
     static func studentLocationsFromResults(results: [[String:AnyObject]]) -> [StudentLocation] {
         
         var studentLocations = [StudentLocation]()

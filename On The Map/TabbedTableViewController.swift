@@ -24,14 +24,6 @@ class TabbedTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // create and set the logout button
-        parentViewController!.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Reply, target: self, action: #selector(logout))
-        //let rightBarButton = parentViewController!.navigationItem.rightBarButtonItems![1]
-        
-        parentViewController!.navigationItem.rightBarButtonItems![1] = UIBarButtonItem(barButtonSystemItem: .Reply, target: self, action: #selector(info))
-        
-        parentViewController!.navigationItem.rightBarButtonItems![0] = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: #selector(info))
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -46,18 +38,7 @@ class TabbedTableViewController: UIViewController {
                 print(error)
             }
         }
-    }
-    
-    // MARK: Logout
-    
-    func logout() {
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func info(){
-        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("InformationPostingViewController") as! InformationPostingViewController
-        self.presentViewController(controller, animated: true, completion: nil)
-    }
+    }   
 }
 
 // MARK: - TabbedTableViewController: UITableViewDelegate, UITableViewDataSource

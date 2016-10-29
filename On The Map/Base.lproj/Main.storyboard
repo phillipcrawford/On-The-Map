@@ -140,12 +140,24 @@
         <!--Manager Tab-->
         <scene sceneID="XdF-vn-1Ds">
             <objects>
-                <tabBarController id="PyB-53-3Er" userLabel="Manager Tab" sceneMemberID="viewController">
+                <tabBarController id="PyB-53-3Er" userLabel="Manager Tab" customClass="CustomTabBarController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="On The Map" id="S3V-Ku-G1h">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="wfy-n2-sUb"/>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="wfy-n2-sUb">
+                            <connections>
+                                <action selector="logout:" destination="PyB-53-3Er" id="lMS-Bj-jgt"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="refresh" id="qmA-fs-1dS"/>
-                            <barButtonItem image="pin" id="Hik-15-gdN" userLabel="pinIcon"/>
+                            <barButtonItem systemItem="refresh" id="qmA-fs-1dS">
+                                <connections>
+                                    <action selector="refresh:" destination="PyB-53-3Er" id="k8G-gc-UpC"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="pin" id="Hik-15-gdN" userLabel="pinIcon">
+                                <connections>
+                                    <action selector="addStudentLocation:" destination="PyB-53-3Er" id="bxE-39-b1a"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="6LC-nB-d6q">

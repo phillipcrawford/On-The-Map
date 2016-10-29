@@ -36,6 +36,10 @@ extension UdacityClient {
         }
     }
     
+    func deleteSession(){
+        taskForDELETEMethod()
+    }
+    
     private func getSessionID(parameters: [String: String!], completionHandlerForSession: (success: Bool, sessionID: String?, userID: String?, errorString: String?) -> Void) {
         
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */

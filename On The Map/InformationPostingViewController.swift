@@ -17,6 +17,7 @@ class InformationPostingViewController: UIViewController, UITextViewDelegate, MK
     @IBOutlet weak var view2: UIView!
     
     @IBAction func cancel1(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBOutlet weak var textView1: UITextView!
@@ -52,6 +53,7 @@ class InformationPostingViewController: UIViewController, UITextViewDelegate, MK
         ParseClient.sharedInstance().postStudentLocation { (studentLocations, error) in
             if let studentLocations = studentLocations {
                 self.studentLocations = studentLocations
+                self.dismissViewControllerAnimated(true, completion: nil)
             } else {
                 print(error)
                 

@@ -124,6 +124,23 @@ class UdacityClient : NSObject {
         return task
     }
     
+    func taskForDELETEMethod(){
+        let request = NSMutableURLRequest(URL: tmdbURLFromParameters(Methods.AuthenticationSessionNew))
+        request.HTTPMethod = "DELETE"
+        var xsrfCookie: NSHTTPCookie? = nil
+        let sharedCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+        for cookie in sharedCookieStorage.cookies! {
+            if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+        }
+        if let xsrfCookie = xsrfCookie {
+            request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+        }
+        let task = session.dataTaskWithRequest(request) { (data, response, error) in
+            
+        }
+        task.resume()
+    }
+    
     // MARK: Helpers
     
     // substitute the key for the value that is contained within the method name
