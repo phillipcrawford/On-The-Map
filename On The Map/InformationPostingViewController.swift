@@ -108,6 +108,7 @@ class InformationPostingViewController: UIViewController, UITextViewDelegate, MK
                 let annotation = MKPointAnnotation()
                 annotation.coordinate = center
                 annotation.title = ParseClient.sharedInstance().mapString
+                self.mapView.addAnnotation(annotation)
                 completion()
             }
         }
