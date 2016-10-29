@@ -49,8 +49,7 @@ extension UdacityClient {
             
             /* 3. Send the desired value(s) to completion handler */
             if error != nil {
-                //print(error)
-                completionHandlerForSession(success: false, sessionID: nil, userID: nil, errorString: "Login Failed (Incorrect Username or Password).")
+                completionHandlerForSession(success: false, sessionID: nil, userID: nil, errorString: (error?.userInfo)!["NSLocalizedDescription"]! as? String)
             } else {
                 if let sessionID = results[UdacityClient.JSONResponseKeys.SessionID]!![UdacityClient.JSONResponseKeys.UserID]!! as? String, userID = results[UdacityClient.JSONResponseKeys.Account]!![UdacityClient.JSONResponseKeys.Key]!! as? String {
                     completionHandlerForSession(success: true, sessionID: sessionID, userID: userID, errorString: nil)
