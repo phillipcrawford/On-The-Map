@@ -357,7 +357,6 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="cancel1:" destination="IeS-kG-E9j" eventType="touchUpInside" id="lQX-ib-v9V"/>
                                             <action selector="cancel2:" destination="IeS-kG-E9j" eventType="touchUpInside" id="ZIH-4s-Wvm"/>
                                         </connections>
                                     </button>
@@ -425,6 +424,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h3Z-y0-0Wd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="oyX-eF-NKH">
+                    <connections>
+                        <action selector="userDidTapView:" destination="IeS-kG-E9j" id="8Rt-fM-IrY"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3041" y="538"/>
         </scene>

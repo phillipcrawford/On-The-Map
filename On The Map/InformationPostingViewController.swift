@@ -11,6 +11,7 @@ import MapKit
 
 class InformationPostingViewController: UIViewController, UITextViewDelegate, MKMapViewDelegate {
     
+    var keyboardOnScreen = false
     var studentLocations: [StudentLocation] = [StudentLocation]()
     
     @IBOutlet weak var view1: UIView!
@@ -24,6 +25,7 @@ class InformationPostingViewController: UIViewController, UITextViewDelegate, MK
     
     @IBOutlet weak var button1: UIButton!
     @IBAction func findOnTheMap(sender: AnyObject) {
+        userDidTapView(self)
         let locationString = textView1.text
         ParseClient.sharedInstance().mapString = locationString
         geocoding(locationString) {
@@ -47,6 +49,7 @@ class InformationPostingViewController: UIViewController, UITextViewDelegate, MK
     
     @IBOutlet weak var button2: UIButton!
     @IBAction func submit(sender: AnyObject) {
+        userDidTapView(self)
         let linkString = textView2.text
         print(linkString)
         ParseClient.sharedInstance().mediaURL = linkString
@@ -66,6 +69,10 @@ class InformationPostingViewController: UIViewController, UITextViewDelegate, MK
         textView2.delegate = self
         button1.layer.cornerRadius = 5
         button2.layer.cornerRadius = 5
+        subscribeToNotification(UIKeyboardWillShowNotification, selector: #selector(keyboardWillShow))
+        subscribeToNotification(UIKeyboardWillHideNotification, selector: #selector(keyboardWillHide))
+        subscribeToNotification(UIKeyboardDidShowNotification, selector: #selector(keyboardDidShow))
+        subscribeToNotification(UIKeyboardDidHideNotification, selector: #selector(keyboardDidHide))
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -75,6 +82,12 @@ class InformationPostingViewController: UIViewController, UITextViewDelegate, MK
     override func viewDidAppear(animated: Bool) {
         super.viewWillAppear(animated)
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        unsubscribeFromAllNotifications()
+    }
+    
     func textViewDidBeginEditing(textView: UITextView) {
         textView.text = nil
     }
@@ -98,5 +111,70 @@ class InformationPostingViewController: UIViewController, UITextViewDelegate, MK
                 completion()
             }
         }
+    }
+}
+
+
+extension InformationPostingViewController: UITextFieldDelegate {
+    
+    // MARK: UITextFieldDelegate
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // MARK: Show/Hide Keyboard
+    
+    func keyboardWillShow(notification: NSNotification) {
+        if !keyboardOnScreen {
+            view.frame.origin.y -= keyboardHeight(notification)
+            //logoImageView.hidden = true
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if keyboardOnScreen {
+            view.frame.origin.y += keyboardHeight(notification)
+            //logoImageView.hidden = false
+        }
+    }
+    
+    func keyboardDidShow(notification: NSNotification) {
+        keyboardOnScreen = true
+    }
+    
+    func keyboardDidHide(notification: NSNotification) {
+        keyboardOnScreen = false
+    }
+    
+    private func keyboardHeight(notification: NSNotification) -> CGFloat {
+        let userInfo = notification.userInfo
+        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
+        return keyboardSize.CGRectValue().height
+    }
+    
+    private func resignIfFirstResponder(textField: UITextView) {
+        if textField.isFirstResponder() {
+            textField.resignFirstResponder()
+        }
+    }
+    
+    @IBAction func userDidTapView(sender: AnyObject) {
+        resignIfFirstResponder(textView1)
+        resignIfFirstResponder(textView2)
+    }
+
+}
+
+// MARK: - InformationPostingViewController (Notifications)
+extension InformationPostingViewController {
+    
+    private func subscribeToNotification(notification: String, selector: Selector) {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: selector, name: notification, object: nil)
+    }
+    
+    private func unsubscribeFromAllNotifications() {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 }
