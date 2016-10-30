@@ -30,20 +30,18 @@ class TabbedMapViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
         ParseClient.sharedInstance().getStudentLocations { (studentLocations, error) in
             if let studentLocations = studentLocations {
                 self.studentLocations = studentLocations
                 performUIUpdatesOnMain{
+                    self.loadMap()
                 }
             } else {
                 print(error)
             }
-        } 
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        performSlowUpdate {
-            self.loadMap()
         }
     }
     override func viewDidAppear(animated: Bool){
@@ -116,4 +114,12 @@ class TabbedMapViewController: UIViewController, MKMapViewDelegate {
             }
         }
     }
+    
+    class func sharedInstance() -> TabbedMapViewController {
+        struct Singleton {
+            static var sharedInstance = TabbedMapViewController()
+        }
+        return Singleton.sharedInstance
+    }
+    
 }

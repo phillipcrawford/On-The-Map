@@ -22,14 +22,23 @@ class CustomTabBarController: UITabBarController {
     }
     
     @IBAction func refresh(sender: AnyObject) {
-        self.viewDidLoad()
-        self.viewWillAppear(true)
-        self.viewDidAppear(true)
-        performSlowUpdate(){
-            self.viewDidLoad()
-            self.viewWillAppear(true)
-            self.viewDidAppear(true)
+        let mapVC = self.viewControllers![0] as! TabbedMapViewController
+        let tableVC = self.viewControllers![1] as! TabbedTableViewController
+        ParseClient.sharedInstance().getStudentLocations { (studentLocations, error) in
+            if let studentLocations = studentLocations {
+                mapVC.studentLocations = studentLocations
+                tableVC.studentLocations = studentLocations
+                performUIUpdatesOnMain{
+                    mapVC.loadMap()
+                    // tableVC.StudentLocationsTableView will be nil if we hit refresh without ever going to TabbedTableViewController
+                    if tableVC.StudentLocationsTableView != nil {
+                        tableVC.StudentLocationsTableView.reloadData()
+                    }
+                }
+            } else {
+                print(error)
+            }
         }
+        
     }
-
 }

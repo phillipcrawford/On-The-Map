@@ -1,9 +1,9 @@
 //
-//  FavoritesTableViewController.swift
-//  TheMovieManager
+//  TabbedTableViewController.swift
+//  On The Map
 //
-//  Created by Jarrod Parkes on 2/26/15.
-//  Copyright (c) 2015 Jarrod Parkes. All rights reserved.
+//  Created by Phillip Crawford on 10/15/16.
+//  Copyright © 2016 Phillip Crawford. All rights reserved.
 //
 
 import UIKit
@@ -38,7 +38,14 @@ class TabbedTableViewController: UIViewController {
                 print(error)
             }
         }
-    }   
+    }
+    
+    class func sharedInstance() -> TabbedTableViewController {
+        struct Singleton {
+            static var sharedInstance = TabbedTableViewController()
+        }
+        return Singleton.sharedInstance
+    }
 }
 
 // MARK: - TabbedTableViewController: UITableViewDelegate, UITableViewDataSource
@@ -70,10 +77,5 @@ extension TabbedTableViewController: UITableViewDelegate, UITableViewDataSource 
         let app = UIApplication.sharedApplication()
         let toOpen = studentLocation.mediaURL
         app.openURL(NSURL(string: toOpen)!)
-//        let controller = storyboard!.instantiateViewControllerWithIdentifier("MovieDetailViewController") as! MovieDetailViewController
-//        controller.movie = movies[indexPath.row]
-//        navigationController!.pushViewController(controller, animated: true)
     }
-    // This delegate method is implemented to respond to taps. It opens the system browser
-    // to the URL specified in the annotationViews subtitle property.
 }
