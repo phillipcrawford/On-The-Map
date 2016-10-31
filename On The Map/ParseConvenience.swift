@@ -11,34 +11,34 @@ import Foundation
 
 extension ParseClient {
     
-    func getStudentLocations(completionHandlerForStudentLocations: (result: [StudentLocation]?, error: String?) -> Void) {
+    func getStudentInformation(completionHandlerForStudentInformation: (result: [StudentInformation]?, error: String?) -> Void) {
         let method = ParseClient.Methods.StudentLocation
         taskForGETMethod(method) { (results, error) in
             if let error = error {
-                completionHandlerForStudentLocations(result: nil, error: (error.userInfo)["NSLocalizedDescription"]! as? String)
+                completionHandlerForStudentInformation(result: nil, error: (error.userInfo)["NSLocalizedDescription"]! as? String)
             } else {
                 if let results = results[ParseClient.JSONResponseKeys.StudentResults] as? [[String:AnyObject]] {
-                    let studentLocations = StudentLocation.studentLocationsFromResults(results)
-                    completionHandlerForStudentLocations(result: studentLocations, error: nil)
+                    let studentInformation = StudentInformation.studentInformationFromResults(results)
+                    completionHandlerForStudentInformation(result: studentInformation, error: nil)
                 } else {
-                    completionHandlerForStudentLocations(result: nil, error: "getStudentLocations parsing")
+                    completionHandlerForStudentInformation(result: nil, error: "getStudentInformation parsing")
                 }
             }
         }
     }
     
-    func postStudentLocation(completionHandlerForStudentLocation: (result: [StudentLocation]?, error: String?) -> Void) {
+    func postStudentInformation(completionHandlerForStudentInformation: (result: [StudentInformation]?, error: String?) -> Void) {
         let method = ParseClient.Methods.StudentLocation
         let jsonBody = "{\"\(ParseClient.JSONBodyKeys.UniqueKey)\": \"\(userID!)\", \"\(ParseClient.JSONBodyKeys.FirstName)\": \"\(firstName!)\", \"\(ParseClient.JSONBodyKeys.LastName)\": \"\(lastName!)\",\"\(ParseClient.JSONBodyKeys.MapString)\": \"\(mapString!)\", \"\(ParseClient.JSONBodyKeys.MediaURL)\": \"\(mediaURL!)\",\"\(ParseClient.JSONBodyKeys.Latitude)\": \(latitude!), \"\(ParseClient.JSONBodyKeys.Longitude)\": \(longitude!)}"
         taskForPOSTMethod(method, jsonBody: jsonBody) { (results, error) in
             if let error = error {
-                completionHandlerForStudentLocation(result: nil, error: (error.userInfo)["NSLocalizedDescription"]! as? String)
+                completionHandlerForStudentInformation(result: nil, error: (error.userInfo)["NSLocalizedDescription"]! as? String)
             } else {
                 if let results = results as? [String:AnyObject!] {
-                    let currentStudent = StudentLocation.currentStudent(results)
-                    completionHandlerForStudentLocation(result: currentStudent, error: nil)
+                    let currentStudent = StudentInformation.currentStudent(results)
+                    completionHandlerForStudentInformation(result: currentStudent, error: nil)
                 } else {
-                    completionHandlerForStudentLocation(result: nil, error: "getStudentLocations parsing")
+                    completionHandlerForStudentInformation(result: nil, error: "getStudentInformation parsing")
                 }
             }
         }

@@ -1,12 +1,12 @@
 //
-//  StudentLocation.swift
+//  StudentInformation.swift
 //  On The Map
 //
 //  Created by Phillip Crawford on 10/17/16.
 //  Copyright © 2016 Phillip Crawford. All rights reserved.
 //
 
-struct StudentLocation {
+struct StudentInformation {
     
     // MARK: Properties
     
@@ -38,8 +38,8 @@ struct StudentLocation {
         
     }
     
-    static func currentStudent(results: [String:AnyObject]) -> [StudentLocation] {
-        var studentLocations = [StudentLocation]()
+    static func currentStudent(results: [String:AnyObject]) -> [StudentInformation] {
+        var studentInformation = [StudentInformation]()
         var newResult = [String:AnyObject]()
         newResult[ParseClient.JSONResponseKeys.FirstName] = ParseClient.sharedInstance().firstName
         newResult[ParseClient.JSONResponseKeys.LastName] = ParseClient.sharedInstance().lastName
@@ -52,19 +52,19 @@ struct StudentLocation {
         newResult["createdAt"] = results["createdAt"]
         newResult["updatedAt"] = ""
         
-        studentLocations.append(StudentLocation(dictionary: newResult))
-        return studentLocations
+        studentInformation.append(StudentInformation(dictionary: newResult))
+        return studentInformation
     }
     
-    static func studentLocationsFromResults(results: [[String:AnyObject]]) -> [StudentLocation] {
+    static func studentInformationFromResults(results: [[String:AnyObject]]) -> [StudentInformation] {
         
-        var studentLocations = [StudentLocation]()
+        var studentInformation = [StudentInformation]()
         
         // iterate through array of dictionaries, each Movie is a dictionary
         for result in results {
-            studentLocations.append(StudentLocation(dictionary: result))
+            studentInformation.append(StudentInformation(dictionary: result))
         }
         
-        return studentLocations
+        return studentInformation
     }
 }

@@ -21,7 +21,7 @@
 		F01BA4C71DB5300200B21A91 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01BA4C61DB5300200B21A91 /* ParseClient.swift */; };
 		F01BA4C91DB5303300B21A91 /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01BA4C81DB5303300B21A91 /* ParseConstants.swift */; };
 		F01BA4CB1DB5305400B21A91 /* ParseConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01BA4CA1DB5305400B21A91 /* ParseConvenience.swift */; };
-		F01BA4CD1DB531D000B21A91 /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01BA4CC1DB531D000B21A91 /* StudentLocation.swift */; };
+		F01BA4CD1DB531D000B21A91 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01BA4CC1DB531D000B21A91 /* StudentInformation.swift */; };
 		F01BA4CF1DB9702800B21A91 /* InformationPostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01BA4CE1DB9702800B21A91 /* InformationPostingViewController.swift */; };
 		F01BA4F71DC32C3600B21A91 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01BA4F61DC32C3600B21A91 /* CustomTabBarController.swift */; };
 /* End PBXBuildFile section */
@@ -43,7 +43,7 @@
 		F01BA4C61DB5300200B21A91 /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
 		F01BA4C81DB5303300B21A91 /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
 		F01BA4CA1DB5305400B21A91 /* ParseConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConvenience.swift; sourceTree = "<group>"; };
-		F01BA4CC1DB531D000B21A91 /* StudentLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
+		F01BA4CC1DB531D000B21A91 /* StudentInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
 		F01BA4CE1DB9702800B21A91 /* InformationPostingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationPostingViewController.swift; sourceTree = "<group>"; };
 		F01BA4F61DC32C3600B21A91 /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -151,7 +151,7 @@
 				F01BA4C61DB5300200B21A91 /* ParseClient.swift */,
 				F01BA4C81DB5303300B21A91 /* ParseConstants.swift */,
 				F01BA4CA1DB5305400B21A91 /* ParseConvenience.swift */,
-				F01BA4CC1DB531D000B21A91 /* StudentLocation.swift */,
+				F01BA4CC1DB531D000B21A91 /* StudentInformation.swift */,
 			);
 			name = Parse;
 			sourceTree = "<group>";
@@ -228,7 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F01BA4AA1DA7DD1F00B21A91 /* GCDBlackBox.swift in Sources */,
-				F01BA4CD1DB531D000B21A91 /* StudentLocation.swift in Sources */,
+				F01BA4CD1DB531D000B21A91 /* StudentInformation.swift in Sources */,
 				F01BA4CB1DB5305400B21A91 /* ParseConvenience.swift in Sources */,
 				F01BA48F1DA7DAA900B21A91 /* AppDelegate.swift in Sources */,
 				F01BA4CF1DB9702800B21A91 /* InformationPostingViewController.swift in Sources */,

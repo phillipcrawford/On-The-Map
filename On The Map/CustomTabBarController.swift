@@ -16,7 +16,7 @@ class CustomTabBarController: UITabBarController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 
-    @IBAction func addStudentLocation(sender: AnyObject) {
+    @IBAction func addStudentInformation(sender: AnyObject) {
         let controller = self.storyboard!.instantiateViewControllerWithIdentifier("InformationPostingViewController") as! InformationPostingViewController
         self.presentViewController(controller, animated: true, completion: nil)
     }
@@ -24,15 +24,15 @@ class CustomTabBarController: UITabBarController {
     @IBAction func refresh(sender: AnyObject) {
         let mapVC = self.viewControllers![0] as! TabbedMapViewController
         let tableVC = self.viewControllers![1] as! TabbedTableViewController
-        ParseClient.sharedInstance().getStudentLocations { (studentLocations, error) in
-            if let studentLocations = studentLocations {
-                mapVC.studentLocations = studentLocations
-                tableVC.studentLocations = studentLocations
+        ParseClient.sharedInstance().getStudentInformation { (studentInformation, error) in
+            if let studentInformation = studentInformation {
+                mapVC.studentInformation = studentInformation
+                tableVC.studentInformation = studentInformation
                 performUIUpdatesOnMain{
                     mapVC.loadMap()
-                    // tableVC.StudentLocationsTableView will be nil if we hit refresh without ever going to TabbedTableViewController
-                    if tableVC.StudentLocationsTableView != nil {
-                        tableVC.StudentLocationsTableView.reloadData()
+                    // tableVC.StudentInformationTableView will be nil if we hit refresh without ever going to TabbedTableViewController
+                    if tableVC.StudentInformationTableView != nil {
+                        tableVC.StudentInformationTableView.reloadData()
                     }
                 }
             } else {

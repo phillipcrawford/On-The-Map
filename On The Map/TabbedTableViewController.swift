@@ -14,11 +14,11 @@ class TabbedTableViewController: UIViewController {
     
     // MARK: Properties
     
-    var studentLocations: [StudentLocation] = [StudentLocation]()
+    var studentInformation: [StudentInformation] = [StudentInformation]()
     
     // MARK: Outlets
     
-    @IBOutlet weak var StudentLocationsTableView: UITableView!
+    @IBOutlet weak var StudentInformationTableView: UITableView!
     
     // MARK: Life Cycle
     
@@ -28,11 +28,11 @@ class TabbedTableViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        ParseClient.sharedInstance().getStudentLocations { (studentLocations, error) in
-            if let studentLocations = studentLocations {
-                self.studentLocations = studentLocations
+        ParseClient.sharedInstance().getStudentInformation { (studentInformation, error) in
+            if let studentInformation = studentInformation {
+                self.studentInformation = studentInformation
                 performUIUpdatesOnMain {
-                    self.StudentLocationsTableView.reloadData()
+                    self.StudentInformationTableView.reloadData()
                 }
             } else {
                 self.alertWithError(error!)
@@ -61,12 +61,12 @@ extension TabbedTableViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         /* Get cell type */
-        let cellReuseIdentifier = "StudentLocationViewCell"
-        let studentLocation = studentLocations[indexPath.row]
+        let cellReuseIdentifier = "StudentInformationViewCell"
+        let singleStudentInformation = studentInformation[indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier) as UITableViewCell!
         
         /* Set cell defaults */
-        cell.textLabel!.text = "\(studentLocation.firstName) \(studentLocation.lastName)"
+        cell.textLabel!.text = "\(singleStudentInformation.firstName) \(singleStudentInformation.lastName)"
         cell.imageView!.image = UIImage(named: "pin")
         cell.imageView!.contentMode = UIViewContentMode.ScaleAspectFit
     
@@ -74,14 +74,14 @@ extension TabbedTableViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return studentLocations.count
+        return studentInformation.count
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let studentLocation = studentLocations[indexPath.row]
+        let singleStudentInformation = studentInformation[indexPath.row]
         
         let app = UIApplication.sharedApplication()
-        let toOpen = studentLocation.mediaURL
+        let toOpen = singleStudentInformation.mediaURL
         app.openURL(NSURL(string: toOpen)!)
     }
 }

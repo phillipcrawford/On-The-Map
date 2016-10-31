@@ -14,7 +14,6 @@ class LoginViewController: UIViewController {
     
     // MARK: Properties
     var keyboardOnScreen = false
-    var studentLocations: [StudentLocation] = [StudentLocation]()
     // MARK: Outlets
     
     @IBOutlet weak var usernameTextField: UITextField!

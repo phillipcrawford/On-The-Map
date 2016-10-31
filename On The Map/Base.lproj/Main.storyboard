@@ -155,7 +155,7 @@
                             </barButtonItem>
                             <barButtonItem image="pin" id="Hik-15-gdN" userLabel="pinIcon">
                                 <connections>
-                                    <action selector="addStudentLocation:" destination="PyB-53-3Er" id="bxE-39-b1a"/>
+                                    <action selector="addStudentInformation:" destination="PyB-53-3Er" id="h7Q-yt-fpH"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -222,11 +222,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="30" sectionFooterHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="S1n-3R-0gN" userLabel="Student Locations Table View">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="30" sectionFooterHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="S1n-3R-0gN" userLabel="Student Information Table View">
                                 <rect key="frame" x="0.0" y="-1" width="600" height="601"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StudentLocationViewCell" textLabel="QuA-xw-LHB" style="IBUITableViewCellStyleDefault" id="qvu-qj-RTt">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StudentInformationViewCell" textLabel="QuA-xw-LHB" style="IBUITableViewCellStyleDefault" id="qvu-qj-RTt">
                                         <rect key="frame" x="0.0" y="94" width="600" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qvu-qj-RTt" id="BBK-EP-wqx">
@@ -260,7 +260,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="List" image="list" id="ih3-d9-4JJ"/>
                     <connections>
-                        <outlet property="StudentLocationsTableView" destination="S1n-3R-0gN" id="SUc-cs-mPU"/>
+                        <outlet property="StudentInformationTableView" destination="S1n-3R-0gN" id="Kvg-xD-ma2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="omD-LX-qaK" sceneMemberID="firstResponder"/>
