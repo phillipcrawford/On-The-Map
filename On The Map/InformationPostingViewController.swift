@@ -4,6 +4,7 @@
 //
 //  Created by Phillip Crawford on 10/20/16.
 //  Copyright © 2016 Phillip Crawford. All rights reserved.
+//  Code for activity indicator came from https://coderwall.com/p/su1t1a/ios-customized-activity-indicator-with-swift
 //
 
 import UIKit
@@ -26,6 +27,8 @@ class InformationPostingViewController: UIViewController, UITextViewDelegate, MK
     
     @IBOutlet weak var button1: UIButton!
     @IBAction func findOnTheMap(sender: AnyObject) {
+        activityIndicatorView.hidden = false
+        activityIndicatorView.startAnimating()
         userDidTapView(self)
         let locationString = textView1.text
         self.parseClient.mapString = locationString
@@ -35,14 +38,19 @@ class InformationPostingViewController: UIViewController, UITextViewDelegate, MK
                 self.view1.hidden = true
                 self.view2.hidden = false
             })
+            self.activityIndicatorView.stopAnimating()
+            self.activityIndicatorView.hidden = true
         }
+
     }
 
     @IBAction func cancel2(sender: AnyObject) {
-        UIView.animateWithDuration(1.5, animations: {
-            self.view1.hidden = false
-            self.view2.hidden = true
-        })
+//   Commenting and not deleting this because I'm getting conflicting instructions from Udacity personnel about how cancel should be implemented: review vs 1 on 1 session
+//        UIView.animateWithDuration(1.5, animations: {
+//            self.view1.hidden = false
+//            self.view2.hidden = true
+//        })
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
                 
     @IBOutlet weak var textView2: UITextView!
@@ -62,6 +70,7 @@ class InformationPostingViewController: UIViewController, UITextViewDelegate, MK
             }
         }
     }
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,10 +88,6 @@ class InformationPostingViewController: UIViewController, UITextViewDelegate, MK
         view2.hidden = true
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         unsubscribeFromAllNotifications()
@@ -95,6 +100,7 @@ class InformationPostingViewController: UIViewController, UITextViewDelegate, MK
     func geocoding(location: String, completion: () -> ()) {
         CLGeocoder().geocodeAddressString(location) { (placemarks, error) in
             if placemarks?.count > 0 {
+                
                 let placemark = placemarks?[0]
                 let location = placemark!.location
                 let coordinate = location?.coordinate
@@ -109,7 +115,7 @@ class InformationPostingViewController: UIViewController, UITextViewDelegate, MK
                 self.mapView.addAnnotation(annotation)
                 completion()
             } else {
-                self.alertWithError((error!.userInfo)["NSLocalizedDescription"]! as! String)
+                self.alertWithError("Geocoder could not find location")
             }
         }
     }
@@ -119,7 +125,6 @@ class InformationPostingViewController: UIViewController, UITextViewDelegate, MK
         alertView.addAction(UIAlertAction(title: "Dismiss", style: .Cancel, handler: nil))
         presentViewController(alertView, animated: true, completion: nil)
     }
-    
 }
 
 extension InformationPostingViewController: UITextFieldDelegate {

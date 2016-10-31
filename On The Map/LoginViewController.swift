@@ -22,6 +22,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var debugTextLabel: UILabel!
     @IBOutlet weak var logoImageView: UIImageView!
+    @IBOutlet weak var loginLabel: UILabel!
+    @IBOutlet weak var signUpButton: UIButton!
     
     // MARK: Life Cycle
     
@@ -107,14 +109,18 @@ extension LoginViewController: UITextFieldDelegate {
     func keyboardWillShow(notification: NSNotification) {
         if !keyboardOnScreen {
             logoImageView.hidden = true
-            view.frame.origin.y -= keyboardHeight(notification)
+            loginLabel.hidden = true
+            signUpButton.hidden = true
+            //view.frame.origin.y -= keyboardHeight(notification)
         }
     }
     
     func keyboardWillHide(notification: NSNotification) {
         if keyboardOnScreen {
             logoImageView.hidden = false
-            view.frame.origin.y += keyboardHeight(notification)
+            loginLabel.hidden = false
+            signUpButton.hidden = false
+            //view.frame.origin.y += keyboardHeight(notification)
         }
     }
     
