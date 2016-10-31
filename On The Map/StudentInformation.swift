@@ -22,7 +22,7 @@ struct StudentInformation {
     let updatedAt: AnyObject
     // MARK: Initializers
     
-    // construct a TMDBMovie from a dictionary
+    // construct a StudentInformation object from a dictionary
     init(dictionary: [String:AnyObject]) {
         
         firstName = dictionary[ParseClient.JSONResponseKeys.FirstName] as! String

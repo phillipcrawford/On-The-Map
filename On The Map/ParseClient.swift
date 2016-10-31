@@ -8,12 +8,8 @@
 
 import Foundation
 
-// MARK: - TMDBClient: NSObject
-
 class ParseClient : NSObject {
-    
-    // MARK: Properties
-    
+
     // shared session
     var session = NSURLSession.sharedSession()
     
@@ -38,7 +34,7 @@ class ParseClient : NSObject {
     func taskForGETMethod(method: String, completionHandlerForGET: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
         /* 2/3. Build the URL, Configure the request */
-        let request = NSMutableURLRequest(URL: tmdbURLFromParameters(method))
+        let request = NSMutableURLRequest(URL: otmURLFromParameters(method))
         request.addValue(ParseClient.Constants.ApplicationId, forHTTPHeaderField: "X-Parse-Application-Id")
         request.addValue(ParseClient.Constants.ApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
         /* 4. Make the request */
@@ -86,7 +82,7 @@ class ParseClient : NSObject {
         //        parametersWithApiKey[ParameterKeys.ApiKey] = Constants.ApiKey
         
         /* 2/3. Build the URL, Configure the request */
-        let request = NSMutableURLRequest(URL: tmdbURLFromParameters(method))
+        let request = NSMutableURLRequest(URL: otmURLFromParameters(method))
 
         request.HTTPMethod = "POST"
         request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
@@ -156,7 +152,7 @@ class ParseClient : NSObject {
     }
     
     // create a URL from parameters
-    private func tmdbURLFromParameters(withPathExtension: String? = nil) -> NSURL {
+    private func otmURLFromParameters(withPathExtension: String? = nil) -> NSURL {
         
         let components = NSURLComponents()
         components.scheme = ParseClient.Constants.ApiScheme

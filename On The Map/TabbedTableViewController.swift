@@ -4,6 +4,7 @@
 //
 //  Created by Phillip Crawford on 10/15/16.
 //  Copyright © 2016 Phillip Crawford. All rights reserved.
+//  Some code originally came from the TMDBMovieManager app
 //
 
 import UIKit

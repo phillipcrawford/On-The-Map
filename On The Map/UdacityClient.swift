@@ -8,11 +8,7 @@
 
 import Foundation
 
-// MARK: - TMDBClient: NSObject
-
 class UdacityClient : NSObject {
-    
-    // MARK: Properties
     
     // shared session
     var session = NSURLSession.sharedSession()
@@ -35,7 +31,7 @@ class UdacityClient : NSObject {
         /* 1. Set the parameters */
         let biggerMethod = "\(method)/\(userID!)"
         /* 2/3. Build the URL, Configure the request */
-        let request = NSMutableURLRequest(URL: tmdbURLFromParameters(biggerMethod))
+        let request = NSMutableURLRequest(URL: otmURLFromParameters(biggerMethod))
         /* 4. Make the request */
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
             
@@ -78,7 +74,7 @@ class UdacityClient : NSObject {
     func taskForPOSTMethod(method: String, jsonBody: String, completionHandlerForPOST: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
         /* 2/3. Build the URL, Configure the request */
-        let request = NSMutableURLRequest(URL: tmdbURLFromParameters(method))
+        let request = NSMutableURLRequest(URL: otmURLFromParameters(method))
         request.HTTPMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -125,7 +121,7 @@ class UdacityClient : NSObject {
     }
     
     func taskForDELETEMethod(){
-        let request = NSMutableURLRequest(URL: tmdbURLFromParameters(Methods.AuthenticationSessionNew))
+        let request = NSMutableURLRequest(URL: otmURLFromParameters(Methods.AuthenticationSessionNew))
         request.HTTPMethod = "DELETE"
         var xsrfCookie: NSHTTPCookie? = nil
         let sharedCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
@@ -166,7 +162,7 @@ class UdacityClient : NSObject {
     }
     
     // create a URL from parameters
-    private func tmdbURLFromParameters(withPathExtension: String? = nil) -> NSURL {
+    private func otmURLFromParameters(withPathExtension: String? = nil) -> NSURL {
         
         let components = NSURLComponents()
         components.scheme = UdacityClient.Constants.ApiScheme

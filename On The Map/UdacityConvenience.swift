@@ -9,8 +9,6 @@
 import UIKit
 import Foundation
 
-// MARK: - TMDBClient (Convenient Resource Methods)
-
 extension UdacityClient {
     
     func authenticateWithViewController(parameters: [String: String!], completionHandlerForAuth: (success: Bool, errorString: String?) -> Void) {
