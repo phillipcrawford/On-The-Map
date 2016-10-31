@@ -47,7 +47,7 @@ class ParseClient : NSObject {
             
             /* GUARD: Was there an error? */
             guard (error == nil) else {
-                sendError("There was an error with your request: \(error)")
+                sendError("The internet connection appears to be offline")
                 return
             }
             
@@ -100,7 +100,7 @@ class ParseClient : NSObject {
             
             /* GUARD: Was there an error? */
             guard (error == nil) else {
-                sendError("There was an error with your request: \(error)")
+                sendError("The internet connection appears to be offline")
                 return
             }
             

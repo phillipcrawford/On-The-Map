@@ -86,7 +86,7 @@ class LoginViewController: UIViewController {
     private func alertWithError(error: String) {
         let alertView = UIAlertController(title: "Login Error", message: error, preferredStyle: .Alert)
         alertView.addAction(UIAlertAction(title: "Dismiss", style: .Cancel, handler: nil))
-        self.presentViewController(alertView, animated: true, completion: nil)
+        presentViewController(alertView, animated: true, completion: nil)
     }
     
 }
@@ -106,15 +106,15 @@ extension LoginViewController: UITextFieldDelegate {
     
     func keyboardWillShow(notification: NSNotification) {
         if !keyboardOnScreen {
-            view.frame.origin.y -= keyboardHeight(notification)
             logoImageView.hidden = true
+            view.frame.origin.y -= keyboardHeight(notification)
         }
     }
     
     func keyboardWillHide(notification: NSNotification) {
         if keyboardOnScreen {
-            view.frame.origin.y += keyboardHeight(notification)
             logoImageView.hidden = false
+            view.frame.origin.y += keyboardHeight(notification)
         }
     }
     

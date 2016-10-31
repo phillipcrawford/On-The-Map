@@ -117,7 +117,7 @@ class InformationPostingViewController: UIViewController, UITextViewDelegate, MK
     private func alertWithError(error: String) {
         let alertView = UIAlertController(title: "Geocoding Error", message: error, preferredStyle: .Alert)
         alertView.addAction(UIAlertAction(title: "Dismiss", style: .Cancel, handler: nil))
-        self.presentViewController(alertView, animated: true, completion: nil)
+        presentViewController(alertView, animated: true, completion: nil)
     }
     
 }

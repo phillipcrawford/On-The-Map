@@ -13,7 +13,8 @@ class CustomTabBarController: UITabBarController {
 
     @IBAction func logout(sender: AnyObject) {
         UdacityClient.sharedInstance().deleteSession()
-        self.dismissViewControllerAnimated(true, completion: nil)
+        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+        self.presentViewController(controller, animated: true, completion: nil)
     }
 
     @IBAction func addStudentInformation(sender: AnyObject) {
@@ -44,7 +45,7 @@ class CustomTabBarController: UITabBarController {
     private func alertWithError(error: String) {
         let alertView = UIAlertController(title: "Download Error", message: error, preferredStyle: .Alert)
         alertView.addAction(UIAlertAction(title: "Dismiss", style: .Cancel, handler: nil))
-        self.presentViewController(alertView, animated: true, completion: nil)
+        presentViewController(alertView, animated: true, completion: nil)
     }
     
 }

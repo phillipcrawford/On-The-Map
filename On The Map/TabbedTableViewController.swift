@@ -23,10 +23,6 @@ class TabbedTableViewController: UIViewController {
     
     // MARK: Life Cycle
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         ParseClient.sharedInstance().getStudentInformation { (studentInformation, error) in
@@ -44,7 +40,7 @@ class TabbedTableViewController: UIViewController {
     private func alertWithError(error: String) {
         let alertView = UIAlertController(title: "Download Error", message: error, preferredStyle: .Alert)
         alertView.addAction(UIAlertAction(title: "Dismiss", style: .Cancel, handler: nil))
-        self.presentViewController(alertView, animated: true, completion: nil)
+        presentViewController(alertView, animated: true, completion: nil)
     }
     
     class func sharedInstance() -> TabbedTableViewController {

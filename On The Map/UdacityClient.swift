@@ -8,7 +8,7 @@
 
 import Foundation
 
-class UdacityClient : NSObject {
+class UdacityClient {
     
     // shared session
     var session = NSURLSession.sharedSession()
@@ -18,11 +18,6 @@ class UdacityClient : NSObject {
     var userID : String? = nil
     var firstName: String? = nil
     var lastName: String? = nil
-    // MARK: Initializers
-    
-    override init() {
-        super.init()
-    }
     
     // MARK: GET
     
@@ -42,7 +37,7 @@ class UdacityClient : NSObject {
             
             /* GUARD: Was there an error? */
             guard (error == nil) else {
-                sendError("There was an error with your request: \(error)")
+                sendError("The internet connection appears to be offline")
                 return
             }
             

@@ -20,6 +20,7 @@ class TabbedMapViewController: UIViewController, MKMapViewDelegate {
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         ParseClient.sharedInstance().getStudentInformation { (studentInformation, error) in
             if let studentInformation = studentInformation {
                 self.studentInformation = studentInformation
@@ -102,7 +103,7 @@ class TabbedMapViewController: UIViewController, MKMapViewDelegate {
     private func alertWithError(error: String) {
         let alertView = UIAlertController(title: "Download Error", message: error, preferredStyle: .Alert)
         alertView.addAction(UIAlertAction(title: "Dismiss", style: .Cancel, handler: nil))
-        self.presentViewController(alertView, animated: true, completion: nil)
+        presentViewController(alertView, animated: true, completion: nil)
     }
     
     class func sharedInstance() -> TabbedMapViewController {
