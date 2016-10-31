@@ -64,11 +64,7 @@ struct StudentLocation {
         for result in results {
             studentLocations.append(StudentLocation(dictionary: result))
         }
-//        for result in studentLocations {
-//            print(result.firstName)
-//            
-//        }
-//        print(studentLocations)
+        
         return studentLocations
     }
 }

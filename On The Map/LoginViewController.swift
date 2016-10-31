@@ -27,10 +27,6 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // get the app delegate
-        //configureUI()
-        
         subscribeToNotification(UIKeyboardWillShowNotification, selector: #selector(keyboardWillShow))
         subscribeToNotification(UIKeyboardWillHideNotification, selector: #selector(keyboardWillHide))
         subscribeToNotification(UIKeyboardDidShowNotification, selector: #selector(keyboardDidShow))

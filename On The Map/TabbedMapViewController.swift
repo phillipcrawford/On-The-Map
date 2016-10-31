@@ -9,22 +9,8 @@
 import UIKit
 import MapKit
 
-/**
- * This view controller demonstrates the objects involved in displaying pins on a map.
- *
- * The map is a MKMapView.
- * The pins are represented by MKPointAnnotation instances.
- *
- * The view controller conforms to the MKMapViewDelegate so that it can receive a method
- * invocation when a pin annotation is tapped. It accomplishes this using two delegate
- * methods: one to put a small "info" button on the right side of each pin, and one to
- * respond when the "info" button is tapped.
- */
-
 class TabbedMapViewController: UIViewController, MKMapViewDelegate {
     
-    // The map. See the setup in the Storyboard file. Note particularly that the view controller
-    // is set up as the map view's delegate.
     @IBOutlet weak var mapView: MKMapView!
     var studentLocations: [StudentLocation] = [StudentLocation]()
     
@@ -40,23 +26,20 @@ class TabbedMapViewController: UIViewController, MKMapViewDelegate {
                     self.loadMap()
                 }
             } else {
-                print(error)
+                self.alertWithError(error!)
             }
         }
     }
+    
     override func viewDidAppear(animated: Bool){
         super.viewDidAppear(animated)
     }
     
     func loadMap(){
-        //var annotations = [MKPointAnnotation]()
         var annotations = [MKPointAnnotation]()
-        // The "locations" array is an array of dictionary objects that are similar to the JSON
-        // data that you can download from parse.
+
         for dictionary in self.studentLocations {
             
-            // Notice that the float values are being used to create CLLocationDegree values.
-            // This is a version of the Double type.
             let lat = CLLocationDegrees(dictionary.latitude)
             let long = CLLocationDegrees(dictionary.longitude)
             
@@ -113,6 +96,12 @@ class TabbedMapViewController: UIViewController, MKMapViewDelegate {
                 app.openURL(NSURL(string: toOpen)!)
             }
         }
+    }
+    
+    private func alertWithError(error: String) {
+        let alertView = UIAlertController(title: "Download Error", message: error, preferredStyle: .Alert)
+        alertView.addAction(UIAlertAction(title: "Dismiss", style: .Cancel, handler: nil))
+        self.presentViewController(alertView, animated: true, completion: nil)
     }
     
     class func sharedInstance() -> TabbedMapViewController {

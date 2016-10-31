@@ -14,17 +14,19 @@ extension ParseClient {
     struct Constants {
         
         // MARK: API Key
-        static let ApiKey : String = "a55aeb535cdb7bfcf9394f2c712ff8c0"
+        
+        static let ApplicationId = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
+        static let ApiKey = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
         
         // MARK: URLs
-        static let ApiScheme = "https"               /////////////
-        static let ApiHost = "parse.udacity.com"       /////////////
-        static let ApiPath = "/parse/classes"                  /////////////
+        static let ApiScheme = "https"
+        static let ApiHost = "parse.udacity.com"
+        static let ApiPath = "/parse/classes"
     }
     
     // MARK: Methods
     struct Methods {
-        static let StudentLocation = "/StudentLocation"              ///////////
+        static let StudentLocation = "/StudentLocation"
     }
     
     // MARK: JSON Body Keys
@@ -50,14 +52,6 @@ extension ParseClient {
         static let ObjectID = "objectId"
         static let UniqueKey = "uniqueKey"
         static let StudentResults = "results"
-    }
-    
-    // MARK: UI
-    struct UI {
-        static let LoginColorTop = UIColor(red: 0.345, green: 0.839, blue: 0.988, alpha: 1.0).CGColor
-        static let LoginColorBottom = UIColor(red: 0.023, green: 0.569, blue: 0.910, alpha: 1.0).CGColor
-        static let GreyColor = UIColor(red: 0.702, green: 0.863, blue: 0.929, alpha:1.0)
-        static let BlueColor = UIColor(red: 0.0, green:0.502, blue:0.839, alpha: 1.0)
     }
     
 }

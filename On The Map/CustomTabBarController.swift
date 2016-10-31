@@ -36,9 +36,17 @@ class CustomTabBarController: UITabBarController {
                     }
                 }
             } else {
-                print(error)
+                self.alertWithError(error!)
             }
         }
-        
     }
+    
+    private func alertWithError(error: String) {
+        let alertView = UIAlertController(title: "Download Error", message: error, preferredStyle: .Alert)
+        alertView.addAction(UIAlertAction(title: "Dismiss", style: .Cancel, handler: nil))
+        self.presentViewController(alertView, animated: true, completion: nil)
+    }
+    
 }
+
+

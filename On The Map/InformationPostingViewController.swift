@@ -12,6 +12,7 @@ import MapKit
 class InformationPostingViewController: UIViewController, UITextViewDelegate, MKMapViewDelegate {
     
     var keyboardOnScreen = false
+    let parseClient = ParseClient.sharedInstance()
     var studentLocations: [StudentLocation] = [StudentLocation]()
     
     @IBOutlet weak var view1: UIView!
@@ -27,7 +28,7 @@ class InformationPostingViewController: UIViewController, UITextViewDelegate, MK
     @IBAction func findOnTheMap(sender: AnyObject) {
         userDidTapView(self)
         let locationString = textView1.text
-        ParseClient.sharedInstance().mapString = locationString
+        self.parseClient.mapString = locationString
         geocoding(locationString) {
             self.view2.hidden = false
             UIView.animateWithDuration(1.5, animations: {
@@ -36,7 +37,7 @@ class InformationPostingViewController: UIViewController, UITextViewDelegate, MK
             })
         }
     }
-    ////////////////
+
     @IBAction func cancel2(sender: AnyObject) {
         UIView.animateWithDuration(1.5, animations: {
             self.view1.hidden = false
@@ -51,20 +52,19 @@ class InformationPostingViewController: UIViewController, UITextViewDelegate, MK
     @IBAction func submit(sender: AnyObject) {
         userDidTapView(self)
         let linkString = textView2.text
-        print(linkString)
-        ParseClient.sharedInstance().mediaURL = linkString
-        ParseClient.sharedInstance().postStudentLocation { (studentLocations, error) in
+        self.parseClient.mediaURL = linkString
+        self.parseClient.postStudentLocation { (studentLocations, error) in
             if let studentLocations = studentLocations {
                 self.studentLocations = studentLocations
                 self.dismissViewControllerAnimated(true, completion: nil)
             } else {
-                print(error)
-                
+                self.alertWithError(error!)
             }
         }
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         textView1.delegate = self
         textView2.delegate = self
         button1.layer.cornerRadius = 5
@@ -98,23 +98,29 @@ class InformationPostingViewController: UIViewController, UITextViewDelegate, MK
                 let placemark = placemarks?[0]
                 let location = placemark!.location
                 let coordinate = location?.coordinate
-                ParseClient.sharedInstance().latitude = coordinate!.latitude
-                ParseClient.sharedInstance().longitude = coordinate!.longitude
-                print(coordinate!.latitude)
-                print(coordinate!.longitude)
+                self.parseClient.latitude = coordinate!.latitude
+                self.parseClient.longitude = coordinate!.longitude
                 let center = CLLocationCoordinate2D(latitude: coordinate!.latitude, longitude: coordinate!.longitude)
-                let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+                let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1))
                 self.mapView.setRegion(region, animated: true)
                 let annotation = MKPointAnnotation()
                 annotation.coordinate = center
-                annotation.title = ParseClient.sharedInstance().mapString
+                annotation.title = self.parseClient.mapString
                 self.mapView.addAnnotation(annotation)
                 completion()
+            } else {
+                self.alertWithError((error!.userInfo)["NSLocalizedDescription"]! as! String)
             }
         }
     }
+    
+    private func alertWithError(error: String) {
+        let alertView = UIAlertController(title: "Geocoding Error", message: error, preferredStyle: .Alert)
+        alertView.addAction(UIAlertAction(title: "Dismiss", style: .Cancel, handler: nil))
+        self.presentViewController(alertView, animated: true, completion: nil)
+    }
+    
 }
-
 
 extension InformationPostingViewController: UITextFieldDelegate {
     
