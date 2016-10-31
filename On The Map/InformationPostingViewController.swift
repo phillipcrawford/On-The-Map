@@ -117,6 +117,8 @@ class InformationPostingViewController: UIViewController, UITextViewDelegate, MK
                 completion()
             } else {
                 self.alertWithError("Geocoder could not find location")
+                self.activityIndicatorView.stopAnimating()
+                self.activityIndicatorView.hidden = true
             }
         }
     }

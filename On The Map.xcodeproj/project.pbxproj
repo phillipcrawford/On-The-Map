@@ -24,6 +24,7 @@
 		F01BA4CD1DB531D000B21A91 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01BA4CC1DB531D000B21A91 /* StudentInformation.swift */; };
 		F01BA4CF1DB9702800B21A91 /* InformationPostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01BA4CE1DB9702800B21A91 /* InformationPostingViewController.swift */; };
 		F01BA4F71DC32C3600B21A91 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01BA4F61DC32C3600B21A91 /* CustomTabBarController.swift */; };
+		F02E6DDD1DC7DD61003EA380 /* StoredData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02E6DDC1DC7DD61003EA380 /* StoredData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		F01BA4CC1DB531D000B21A91 /* StudentInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
 		F01BA4CE1DB9702800B21A91 /* InformationPostingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationPostingViewController.swift; sourceTree = "<group>"; };
 		F01BA4F61DC32C3600B21A91 /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		F02E6DDC1DC7DD61003EA380 /* StoredData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoredData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 		F01BA4A21DA7DC5400B21A91 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F02E6DDC1DC7DD61003EA380 /* StoredData.swift */,
 				F01BA4A31DA7DC5E00B21A91 /* Clients */,
 			);
 			name = Model;
@@ -231,6 +234,7 @@
 				F01BA4CD1DB531D000B21A91 /* StudentInformation.swift in Sources */,
 				F01BA4CB1DB5305400B21A91 /* ParseConvenience.swift in Sources */,
 				F01BA48F1DA7DAA900B21A91 /* AppDelegate.swift in Sources */,
+				F02E6DDD1DC7DD61003EA380 /* StoredData.swift in Sources */,
 				F01BA4CF1DB9702800B21A91 /* InformationPostingViewController.swift in Sources */,
 				F01BA4C91DB5303300B21A91 /* ParseConstants.swift in Sources */,
 				F01BA4B61DA859E900B21A91 /* UdacityConvenience.swift in Sources */,
