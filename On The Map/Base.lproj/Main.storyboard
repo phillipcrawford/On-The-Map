@@ -316,6 +316,9 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="6rB-GV-vel">
+                                        <rect key="frame" x="290" y="363" width="20" height="20"/>
+                                    </activityIndicatorView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="We8-30-vRG">
                                         <rect key="frame" x="200" y="522" width="200" height="30"/>
                                         <color key="backgroundColor" red="0.99607849120000003" green="0.99215692280000001" blue="0.99215692280000001" alpha="1" colorSpace="deviceRGB"/>
@@ -386,9 +389,6 @@
                                             <action selector="submit:" destination="IeS-kG-E9j" eventType="touchUpInside" id="Z0S-6f-ofi"/>
                                         </connections>
                                     </button>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="6rB-GV-vel">
-                                        <rect key="frame" x="290" y="363" width="20" height="20"/>
-                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -399,24 +399,24 @@
                                     <constraint firstItem="T4f-Jr-ZzQ" firstAttribute="leading" secondItem="q5G-6t-c7M" secondAttribute="leading" id="Mhi-Qs-LTS"/>
                                     <constraint firstItem="Gyf-P2-yZq" firstAttribute="top" secondItem="q5G-6t-c7M" secondAttribute="top" constant="20" id="ahb-RX-AQy"/>
                                     <constraint firstItem="1FW-ff-74O" firstAttribute="centerX" secondItem="q5G-6t-c7M" secondAttribute="centerX" id="eGk-ej-WVA"/>
-                                    <constraint firstItem="6rB-GV-vel" firstAttribute="centerY" secondItem="r4z-Gb-kAx" secondAttribute="centerY" id="fMy-gQ-RMF"/>
                                     <constraint firstAttribute="trailing" secondItem="T4f-Jr-ZzQ" secondAttribute="trailing" id="jcd-jN-Puw"/>
                                     <constraint firstAttribute="bottom" secondItem="1FW-ff-74O" secondAttribute="bottom" constant="44" id="joO-Qd-sag"/>
                                     <constraint firstItem="r4z-Gb-kAx" firstAttribute="leading" secondItem="q5G-6t-c7M" secondAttribute="leading" id="kPY-Cv-1v3"/>
                                     <constraint firstItem="T4f-Jr-ZzQ" firstAttribute="top" secondItem="Gyf-P2-yZq" secondAttribute="bottom" id="qNG-bB-0Hl"/>
-                                    <constraint firstItem="6rB-GV-vel" firstAttribute="centerX" secondItem="r4z-Gb-kAx" secondAttribute="centerX" id="uzZ-eH-1E4"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="q5G-6t-c7M" firstAttribute="top" secondItem="C85-TQ-fSv" secondAttribute="bottom" constant="-20" id="2Qj-HP-dHA"/>
+                            <constraint firstItem="6rB-GV-vel" firstAttribute="centerX" secondItem="r4z-Gb-kAx" secondAttribute="centerX" id="2wv-dk-Zf5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="d7t-gC-4JH" secondAttribute="trailing" constant="-20" id="GU3-Np-x3z"/>
                             <constraint firstAttribute="leadingMargin" secondItem="d7t-gC-4JH" secondAttribute="leading" constant="20" id="L0e-r4-5Rf"/>
                             <constraint firstItem="Qm3-Df-Zdx" firstAttribute="top" secondItem="d7t-gC-4JH" secondAttribute="bottom" id="YJI-63-ZWh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="q5G-6t-c7M" secondAttribute="trailing" constant="-20" id="daV-5c-HU6"/>
                             <constraint firstItem="d7t-gC-4JH" firstAttribute="top" secondItem="C85-TQ-fSv" secondAttribute="bottom" constant="-20" id="iTI-HZ-eYw"/>
                             <constraint firstAttribute="leadingMargin" secondItem="q5G-6t-c7M" secondAttribute="leading" constant="20" id="q4a-7k-TyA"/>
+                            <constraint firstItem="6rB-GV-vel" firstAttribute="centerY" secondItem="r4z-Gb-kAx" secondAttribute="centerY" id="r6W-HP-tUl"/>
                             <constraint firstItem="Qm3-Df-Zdx" firstAttribute="top" secondItem="q5G-6t-c7M" secondAttribute="bottom" id="yHD-4b-4F8"/>
                         </constraints>
                     </view>

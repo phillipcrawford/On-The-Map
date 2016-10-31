@@ -85,6 +85,7 @@ class InformationPostingViewController: UIViewController, UITextViewDelegate, MK
     }
     
     override func viewWillAppear(animated: Bool) {
+        activityIndicatorView.hidden = true
         view2.hidden = true
     }
     
@@ -141,14 +142,12 @@ extension InformationPostingViewController: UITextFieldDelegate {
     func keyboardWillShow(notification: NSNotification) {
         if !keyboardOnScreen {
             view.frame.origin.y -= keyboardHeight(notification)
-            //logoImageView.hidden = true
         }
     }
     
     func keyboardWillHide(notification: NSNotification) {
         if keyboardOnScreen {
             view.frame.origin.y += keyboardHeight(notification)
-            //logoImageView.hidden = false
         }
     }
     
