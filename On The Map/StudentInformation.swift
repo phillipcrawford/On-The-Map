@@ -24,15 +24,54 @@ struct StudentInformation {
     
     // construct a StudentInformation object from a dictionary
     init(dictionary: [String:AnyObject]) {
-        
-        firstName = dictionary[ParseClient.JSONResponseKeys.FirstName] as! String
-        lastName = dictionary[ParseClient.JSONResponseKeys.LastName] as! String
-        latitude = dictionary[ParseClient.JSONResponseKeys.Latitude] as! Double
-        longitude = dictionary[ParseClient.JSONResponseKeys.Longitude] as! Double
-        mapString = dictionary[ParseClient.JSONResponseKeys.MapString] as! String
-        mediaURL = dictionary[ParseClient.JSONResponseKeys.MediaURL] as! String
-        objectID = dictionary[ParseClient.JSONResponseKeys.ObjectID] as! String
-        uniqueKey = dictionary[ParseClient.JSONResponseKeys.UniqueKey] as! String
+        if  dictionary[ParseClient.JSONResponseKeys.FirstName] != nil {
+            firstName = dictionary[ParseClient.JSONResponseKeys.FirstName] as! String
+        } else {
+            firstName = ""
+        }
+        if  dictionary[ParseClient.JSONResponseKeys.LastName] != nil {
+            lastName = dictionary[ParseClient.JSONResponseKeys.LastName] as! String
+        } else {
+            lastName = ""
+        }
+        if  dictionary[ParseClient.JSONResponseKeys.Latitude] != nil {
+            latitude = dictionary[ParseClient.JSONResponseKeys.Latitude] as! Double
+        } else {
+            latitude = 0
+        }
+        if  dictionary[ParseClient.JSONResponseKeys.Longitude] != nil {
+            longitude = dictionary[ParseClient.JSONResponseKeys.Longitude] as! Double
+        } else {
+            longitude = 0
+        }
+        if  dictionary[ParseClient.JSONResponseKeys.MapString] != nil {
+            mapString = dictionary[ParseClient.JSONResponseKeys.MapString] as! String
+        } else {
+            mapString = ""
+        }
+        if  dictionary[ParseClient.JSONResponseKeys.MediaURL] != nil {
+            mediaURL = dictionary[ParseClient.JSONResponseKeys.MediaURL] as! String
+        } else {
+            mediaURL = ""
+        }
+        if  dictionary[ParseClient.JSONResponseKeys.ObjectID] != nil {
+            objectID = dictionary[ParseClient.JSONResponseKeys.ObjectID] as! String
+        } else {
+            objectID = ""
+        }
+        if  dictionary[ParseClient.JSONResponseKeys.UniqueKey] != nil {
+            uniqueKey = dictionary[ParseClient.JSONResponseKeys.UniqueKey] as! String
+        } else {
+            uniqueKey = ""
+        }
+        //firstName = dictionary[ParseClient.JSONResponseKeys.FirstName] as! String
+        //lastName = dictionary[ParseClient.JSONResponseKeys.LastName] as! String
+        //latitude = dictionary[ParseClient.JSONResponseKeys.Latitude] as! Double
+        //longitude = dictionary[ParseClient.JSONResponseKeys.Longitude] as! Double
+        //mapString = dictionary[ParseClient.JSONResponseKeys.MapString] as! String
+        //mediaURL = dictionary[ParseClient.JSONResponseKeys.MediaURL] as! String
+        //objectID = dictionary[ParseClient.JSONResponseKeys.ObjectID] as! String
+        //uniqueKey = dictionary[ParseClient.JSONResponseKeys.UniqueKey] as! String
         createdAt = dictionary["createdAt"]!
         updatedAt = dictionary["updatedAt"]!
         

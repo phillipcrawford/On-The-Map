@@ -75,7 +75,6 @@ class LoginViewController: UIViewController {
             UdacityClient.sharedInstance().userData({ (success, errorString) in
                 performUIUpdatesOnMain {
                     if success {
-                        print("8")
                     } else {
                         self.displayError(errorString)
                     }
