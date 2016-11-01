@@ -17,6 +17,7 @@ extension UdacityClient {
                 self.sessionID = sessionID!
                 self.userID = userID!
                 ParseClient.sharedInstance().userID = userID
+                print("2")
             }
             completionHandlerForAuth(success: success, errorString: errorString)
         }
@@ -25,10 +26,16 @@ extension UdacityClient {
     func userData(completionHandlerForUserData: (success: Bool, errorString: String?) -> Void) {
         getUserData { (success, firstName, lastName, errorString) in
             if success {
+                print("3")
                 self.firstName = firstName
+                print("4")
                 ParseClient.sharedInstance().firstName = firstName
+                print("5")
                 self.lastName = lastName
+                print("6")
                 ParseClient.sharedInstance().lastName = lastName
+                print("7")
+                print(success)
             }
             completionHandlerForUserData(success: success, errorString: errorString)
         }
@@ -45,6 +52,7 @@ extension UdacityClient {
                 completionHandlerForSession(success: false, sessionID: nil, userID: nil, errorString: (error?.userInfo)!["NSLocalizedDescription"]! as? String)
             } else {
                 if let sessionID = results[UdacityClient.JSONResponseKeys.SessionID]!![UdacityClient.JSONResponseKeys.UserID]!! as? String, userID = results[UdacityClient.JSONResponseKeys.Account]!![UdacityClient.JSONResponseKeys.Key]!! as? String {
+                    print("1")
                     completionHandlerForSession(success: true, sessionID: sessionID, userID: userID, errorString: nil)
                 } else {
                     completionHandlerForSession(success: false, sessionID: nil, userID: nil, errorString: "Login Failed (Session ID).")
