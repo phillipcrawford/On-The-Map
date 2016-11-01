@@ -10,7 +10,7 @@
 import UIKit
 
 class CustomTabBarController: UITabBarController {
-
+    
     @IBAction func logout(sender: AnyObject) {
         UdacityClient.sharedInstance().deleteSession()
         let controller = self.storyboard!.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
@@ -25,10 +25,10 @@ class CustomTabBarController: UITabBarController {
     @IBAction func refresh(sender: AnyObject) {
         let mapVC = self.viewControllers![0] as! TabbedMapViewController
         let tableVC = self.viewControllers![1] as! TabbedTableViewController
-        ParseClient.sharedInstance().getStudentInformation { (studentInformation, error) in
-            if let studentInformation = studentInformation {
-                mapVC.studentInformation = studentInformation
-                tableVC.studentInformation = studentInformation
+        StoredData.sharedInstance().getStudentInformation { (studentInformation, error) in
+            if studentInformation != nil {
+                mapVC.studentInformation = studentInformation!
+                tableVC.studentInformation = studentInformation!
                 performUIUpdatesOnMain{
                     mapVC.loadMap()
                     // tableVC.StudentInformationTableView will be nil if we hit refresh without ever going to TabbedTableViewController

@@ -21,9 +21,9 @@ class TabbedMapViewController: UIViewController, MKMapViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        ParseClient.sharedInstance().getStudentInformation { (studentInformation, error) in
-            if let studentInformation = studentInformation {
-                self.studentInformation = studentInformation
+        StoredData.sharedInstance().getStudentInformation { (studentInformation, error) in
+            if studentInformation != nil {
+                self.studentInformation = studentInformation!
                 performUIUpdatesOnMain{
                     self.loadMap()
                 }
