@@ -14,12 +14,12 @@ class CustomTabBarController: UITabBarController {
     @IBAction func logout(sender: AnyObject) {
         UdacityClient.sharedInstance().deleteSession()
         let controller = self.storyboard!.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
-        self.presentViewController(controller, animated: true, completion: nil)
+        presentViewController(controller, animated: true, completion: nil)
     }
 
     @IBAction func addStudentInformation(sender: AnyObject) {
         let controller = self.storyboard!.instantiateViewControllerWithIdentifier("InformationPostingViewController") as! InformationPostingViewController
-        self.presentViewController(controller, animated: true, completion: nil)
+        presentViewController(controller, animated: true, completion: nil)
     }
     
     @IBAction func refresh(sender: AnyObject) {

@@ -14,7 +14,6 @@ class InformationPostingViewController: UIViewController, UITextViewDelegate, MK
     
     var keyboardOnScreen = false
     let parseClient = ParseClient.sharedInstance()
-    var studentInformation: [StudentInformation] = [StudentInformation]()
     
     @IBOutlet weak var view1: UIView!
     @IBOutlet weak var view2: UIView!
@@ -62,8 +61,7 @@ class InformationPostingViewController: UIViewController, UITextViewDelegate, MK
         let linkString = textView2.text
         self.parseClient.mediaURL = linkString
         self.parseClient.postStudentInformation { (studentInformation, error) in
-            if let studentInformation = studentInformation {
-                self.studentInformation = studentInformation
+            if studentInformation != nil{
                 self.dismissViewControllerAnimated(true, completion: nil)
             } else {
                 self.alertWithError(error!)
