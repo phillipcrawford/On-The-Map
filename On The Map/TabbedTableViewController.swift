@@ -13,10 +13,6 @@ import UIKit
 
 class TabbedTableViewController: UIViewController {
     
-    // MARK: Properties
-    
-    var studentInformation: [StudentInformation] = [StudentInformation]()
-    
     // MARK: Outlets
     
     @IBOutlet weak var StudentInformationTableView: UITableView!
@@ -25,9 +21,8 @@ class TabbedTableViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        StoredData.sharedInstance().getStudentInformation { (studentInformation, error) in
-            if studentInformation != nil {
-                self.studentInformation = studentInformation!
+        StoredData.sharedInstance().getStudentInformation { (error) in
+            if error == nil {
                 performUIUpdatesOnMain {
                     self.StudentInformationTableView.reloadData()
                 }
@@ -43,12 +38,6 @@ class TabbedTableViewController: UIViewController {
         presentViewController(alertView, animated: true, completion: nil)
     }
     
-    class func sharedInstance() -> TabbedTableViewController {
-        struct Singleton {
-            static var sharedInstance = TabbedTableViewController()
-        }
-        return Singleton.sharedInstance
-    }
 }
 
 // MARK: - TabbedTableViewController: UITableViewDelegate, UITableViewDataSource
@@ -59,7 +48,7 @@ extension TabbedTableViewController: UITableViewDelegate, UITableViewDataSource 
         
         /* Get cell type */
         let cellReuseIdentifier = "StudentInformationViewCell"
-        let singleStudentInformation = studentInformation[indexPath.row]
+        let singleStudentInformation = StoredData.sharedInstance().studentInformation[indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier) as UITableViewCell!
         
         /* Set cell defaults */
@@ -71,11 +60,11 @@ extension TabbedTableViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return studentInformation.count
+        return StoredData.sharedInstance().studentInformation.count
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let singleStudentInformation = studentInformation[indexPath.row]
+        let singleStudentInformation = StoredData.sharedInstance().studentInformation[indexPath.row]
         
         let app = UIApplication.sharedApplication()
         let toOpen = singleStudentInformation.mediaURL

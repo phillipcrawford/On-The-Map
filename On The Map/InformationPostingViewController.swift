@@ -20,7 +20,7 @@ class InformationPostingViewController: UIViewController, UITextViewDelegate, MK
     @IBOutlet weak var view2: UIView!
     
     @IBAction func cancel1(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBOutlet weak var textView1: UITextView!
@@ -50,7 +50,7 @@ class InformationPostingViewController: UIViewController, UITextViewDelegate, MK
 //            self.view1.hidden = false
 //            self.view2.hidden = true
 //        })
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
                 
     @IBOutlet weak var textView2: UITextView!

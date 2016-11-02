@@ -13,17 +13,11 @@ import MapKit
 class TabbedMapViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
-    var studentInformation: [StudentInformation] = [StudentInformation]()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        StoredData.sharedInstance().getStudentInformation { (studentInformation, error) in
-            if studentInformation != nil {
-                self.studentInformation = studentInformation!
+        StoredData.sharedInstance().getStudentInformation { (error) in
+            if error == nil {
                 performUIUpdatesOnMain{
                     self.loadMap()
                 }
@@ -39,8 +33,7 @@ class TabbedMapViewController: UIViewController, MKMapViewDelegate {
     
     func loadMap(){
         var annotations = [MKPointAnnotation]()
-
-        for dictionary in self.studentInformation {
+        for dictionary in StoredData.sharedInstance().studentInformation {
             
             let lat = CLLocationDegrees(dictionary.latitude)
             let long = CLLocationDegrees(dictionary.longitude)

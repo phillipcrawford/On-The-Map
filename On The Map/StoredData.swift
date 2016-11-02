@@ -9,14 +9,14 @@
 class StoredData {
     
     var studentInformation: [StudentInformation] = [StudentInformation]()
-    
-    func getStudentInformation(completionHandlerForWork:(result: [StudentInformation]? , error: String?) -> Void) {
+
+    func getStudentInformation(completionHandlerForWork:(error: String?) -> Void) {
         ParseClient.sharedInstance().getStudentInformation { (studentInformation, error) in
             if let studentInformation = studentInformation {
                 self.studentInformation = studentInformation
-                completionHandlerForWork(result: self.studentInformation, error: nil)
+                completionHandlerForWork(error: nil)
             } else {
-                completionHandlerForWork(result: nil, error: error)
+                completionHandlerForWork(error: error)
             }
         }
     }
